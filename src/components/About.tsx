@@ -1,0 +1,122 @@
+
+import React, { useEffect, useRef } from 'react';
+import { Code, Briefcase, Github } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { useGitHubUser } from '@/hooks/useGitHub';
+
+const About: React.FC = () => {
+  const { t } = useLanguage();
+  const { data: githubUser, isLoading } = useGitHubUser();
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  // Animation on scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-slide-up');
+            entry.target.classList.remove('opacity-0');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    
+    const elements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
+    elements?.forEach((el) => {
+      observer.observe(el);
+    });
+    
+    return () => {
+      elements?.forEach((el) => {
+        observer.unobserve(el);
+      });
+    };
+  }, []);
+
+  return (
+    <section id="about" ref={sectionRef} className="section-padding relative bg-secondary/30">
+      <div className="container mx-auto">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+          {/* About Content */}
+          <div className="lg:w-1/2">
+            <div className="mb-8 animate-on-scroll opacity-0">
+              <span className="inline-block py-1 px-3 mb-2 text-sm font-medium bg-primary/10 rounded-full">
+                {t('about.subtitle')}
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('about.title')}</h2>
+              <div className="w-20 h-1 bg-primary rounded-full mb-6"></div>
+            </div>
+            
+            <p className="text-lg mb-6 animate-on-scroll opacity-0">
+              {t('about.description')}
+            </p>
+            
+            <div className="flex flex-wrap gap-8 mt-10 animate-on-scroll opacity-0">
+              <div className="flex flex-col items-center">
+                <div className="text-3xl font-bold mb-2">5+</div>
+                <div className="text-sm text-foreground/70">{t('about.experience')}</div>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="text-3xl font-bold mb-2">30+</div>
+                <div className="text-sm text-foreground/70">{t('about.projects')}</div>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="text-3xl font-bold mb-2">20+</div>
+                <div className="text-sm text-foreground/70">{t('about.technologies')}</div>
+              </div>
+            </div>
+            
+            <div className="mt-8 animate-on-scroll opacity-0">
+              <a 
+                href="https://github.com/ronaldtellez" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 rounded-full bg-primary text-primary-foreground 
+                          font-medium shadow-soft transition-all duration-300 hover:shadow-soft-lg hover:translate-y-[-2px]"
+              >
+                <Github className="mr-2 h-5 w-5" />
+                {t('hero.viewGithub')}
+              </a>
+            </div>
+          </div>
+          
+          {/* About Image */}
+          <div className="lg:w-1/2 animate-on-scroll opacity-0">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl blur-xl opacity-70"></div>
+              <div className="relative glass glass-dark overflow-hidden rounded-2xl shadow-soft-lg">
+                <img 
+                  src={githubUser?.avatar_url || "https://github.com/ronaldtellez.png"} 
+                  alt="Ronald Tellez" 
+                  className="w-full h-auto rounded-2xl transform transition-transform hover:scale-105 duration-700"
+                  style={{ aspectRatio: '1/1', objectFit: 'cover' }}
+                />
+                
+                {/* Floating badges */}
+                <div className="absolute top-4 left-4 glass glass-dark p-3 rounded-full shadow-soft">
+                  <Code className="w-5 h-5" />
+                </div>
+                
+                <div className="absolute bottom-4 right-4 glass glass-dark p-3 rounded-full shadow-soft">
+                  <Briefcase className="w-5 h-5" />
+                </div>
+                
+                {/* Info card */}
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 glass glass-dark px-6 py-4 rounded-xl shadow-soft-lg">
+                  <h3 className="font-medium text-center">Ronald Tellez</h3>
+                  <p className="text-foreground/70 text-sm text-center">{t('hero.title')}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;
