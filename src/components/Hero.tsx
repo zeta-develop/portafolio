@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { GitHub, ArrowDown } from 'lucide-react';
+import { Github, ArrowDown } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Hero: React.FC = () => {
@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
               className="inline-flex items-center px-6 py-3 rounded-full bg-secondary text-secondary-foreground 
                         font-medium transition-colors hover:bg-secondary/80"
             >
-              <GitHub className="mr-2 h-5 w-5" />
+              <Github className="mr-2 h-5 w-5" />
               {t('hero.viewGithub')}
             </a>
           </div>
