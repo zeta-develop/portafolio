@@ -22,11 +22,12 @@ interface GitHubUser {
   public_repos: number;
 }
 
-const GITHUB_USERNAME = 'zeta-develop' // GitHub username
+const GITHUB_USERNAME = 'zeta-develop'; // Your GitHub username
 
-// Fetch GitHub user data
+// Fetch GitHub user data in real-time
 const fetchGitHubUser = async (): Promise<GitHubUser> => {
-  const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`);
+  const timestamp = new Date().getTime(); // Add timestamp to prevent caching
+  const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}?t=${timestamp}`);
   
   if (!response.ok) {
     throw new Error('Error fetching GitHub user data');
@@ -35,9 +36,10 @@ const fetchGitHubUser = async (): Promise<GitHubUser> => {
   return response.json();
 };
 
-// Fetch GitHub repositories
+// Fetch GitHub repositories in real-time
 const fetchRepositories = async (): Promise<Repository[]> => {
-  const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`);
+  const timestamp = new Date().getTime(); // Add timestamp to prevent caching
+  const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100&t=${timestamp}`);
   
   if (!response.ok) {
     throw new Error('Error fetching repositories');
@@ -56,7 +58,8 @@ export function useGitHubUser() {
   return useQuery({
     queryKey: ['githubUser'],
     queryFn: fetchGitHubUser,
-    staleTime: 1000 * 60 * 60, // 1 hour
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    refetchOnWindowFocus: true, // Refetch when window regains focus
   });
 }
 
@@ -64,7 +67,8 @@ export function useGitHubRepositories() {
   return useQuery({
     queryKey: ['githubRepos'],
     queryFn: fetchRepositories,
-    staleTime: 1000 * 60 * 60, // 1 hour
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    refetchOnWindowFocus: true, // Refetch when window regains focus
   });
 }
 
