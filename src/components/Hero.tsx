@@ -88,13 +88,13 @@ const Hero: React.FC = () => {
             <div className="absolute -right-16 top-0 glass glass-dark p-4 rounded-lg shadow-soft transform rotate-3 opacity-80 animate-float">
               <pre className="w-40 h-24 overflow-hidden text-xs font-mono bg-black/80 p-2 rounded-md text-green-400">
                 <code>
-const Portfolio = () => {
+{`const Portfolio = () => {
   return (
     <div className="coding">
       zeta-develop
     </div>
   );
-};
+};`}
                 </code>
               </pre>
               <div className="text-xs mt-2 opacity-70 font-mono">zeta-develop/portfolio.jsx</div>
