@@ -28,19 +28,19 @@ const Hero: React.FC = () => {
       {/* Decorative code images */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=60" 
+          src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60" 
           alt="" 
           className="absolute -right-20 top-40 w-64 h-48 object-cover rounded-lg opacity-10 transform rotate-6 blur-sm"
           aria-hidden="true"
         />
         <img 
-          src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=60" 
+          src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=60" 
           alt="" 
           className="absolute -left-16 top-1/4 w-56 h-40 object-cover rounded-lg opacity-10 transform -rotate-3 blur-sm"
           aria-hidden="true"
         />
         <img 
-          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=60" 
+          src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=60" 
           alt="" 
           className="absolute right-1/4 bottom-40 w-72 h-48 object-cover rounded-lg opacity-10 transform rotate-2 blur-sm"
           aria-hidden="true"
@@ -86,13 +86,18 @@ const Hero: React.FC = () => {
           {/* Floating Code Card */}
           <div className="relative mt-8 hidden md:block animate-on-load">
             <div className="absolute -right-16 top-0 glass glass-dark p-4 rounded-lg shadow-soft transform rotate-3 opacity-80 animate-float">
-              <img 
-                src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=600&q=80" 
-                alt="Code snippet" 
-                className="w-40 h-24 object-cover rounded-md" 
-                aria-hidden="true"
-              />
-              <div className="text-xs mt-2 opacity-70 font-mono">zeta-develop/coding</div>
+              <pre className="w-40 h-24 overflow-hidden text-xs font-mono bg-black/80 p-2 rounded-md text-green-400">
+                <code>
+const Portfolio = () => {
+  return (
+    <div className="coding">
+      zeta-develop
+    </div>
+  );
+};
+                </code>
+              </pre>
+              <div className="text-xs mt-2 opacity-70 font-mono">zeta-develop/portfolio.jsx</div>
             </div>
           </div>
         </div>

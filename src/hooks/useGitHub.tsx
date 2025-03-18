@@ -22,7 +22,7 @@ interface GitHubUser {
   public_repos: number;
 }
 
-const GITHUB_USERNAME = 'ronaldtellez' // Update this with your GitHub username
+const GITHUB_USERNAME = 'zeta-develop' // Actualizado al nombre de usuario correcto
 
 // Fetch GitHub user data
 const fetchGitHubUser = async (): Promise<GitHubUser> => {

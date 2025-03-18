@@ -178,7 +178,7 @@ const Projects: React.FC = () => {
         {/* View More Link */}
         <div className="text-center mt-12 animate-on-scroll opacity-0">
           <a 
-            href="https://github.com/ronaldtellez"
+            href="https://github.com/zeta-develop"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 rounded-full bg-secondary text-secondary-foreground 
