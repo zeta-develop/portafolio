@@ -25,6 +25,28 @@ const Hero: React.FC = () => {
         <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-background to-transparent"></div>
       </div>
       
+      {/* Decorative code images */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=60" 
+          alt="" 
+          className="absolute -right-20 top-40 w-64 h-48 object-cover rounded-lg opacity-10 transform rotate-6 blur-sm"
+          aria-hidden="true"
+        />
+        <img 
+          src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=60" 
+          alt="" 
+          className="absolute -left-16 top-1/4 w-56 h-40 object-cover rounded-lg opacity-10 transform -rotate-3 blur-sm"
+          aria-hidden="true"
+        />
+        <img 
+          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=60" 
+          alt="" 
+          className="absolute right-1/4 bottom-40 w-72 h-48 object-cover rounded-lg opacity-10 transform rotate-2 blur-sm"
+          aria-hidden="true"
+        />
+      </div>
+      
       <div ref={containerRef} className="container mx-auto px-6 md:px-8 z-10 appear-animate">
         <div className="max-w-4xl mx-auto">
           <span className="inline-block py-1 px-3 mb-6 text-sm font-medium bg-primary/10 rounded-full animate-on-load">
@@ -50,7 +72,7 @@ const Hero: React.FC = () => {
             </a>
             
             <a 
-              href="https://github.com/ronaldtellez" 
+              href="https://github.com/zeta-develop" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3 rounded-full bg-secondary text-secondary-foreground 
@@ -59,6 +81,19 @@ const Hero: React.FC = () => {
               <Github className="mr-2 h-5 w-5" />
               {t('hero.viewGithub')}
             </a>
+          </div>
+          
+          {/* Floating Code Card */}
+          <div className="relative mt-8 hidden md:block animate-on-load">
+            <div className="absolute -right-16 top-0 glass glass-dark p-4 rounded-lg shadow-soft transform rotate-3 opacity-80 animate-float">
+              <img 
+                src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=600&q=80" 
+                alt="Code snippet" 
+                className="w-40 h-24 object-cover rounded-md" 
+                aria-hidden="true"
+              />
+              <div className="text-xs mt-2 opacity-70 font-mono">zeta-develop/coding</div>
+            </div>
           </div>
         </div>
       </div>
