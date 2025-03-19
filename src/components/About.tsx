@@ -1,42 +1,40 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Code, Briefcase, Github, GraduationCap, Award, Rocket } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useGitHubUser } from '@/hooks/useGitHub';
-
 const About: React.FC = () => {
-  const { t } = useLanguage();
-  const { data: githubUser, isLoading } = useGitHubUser();
+  const {
+    t
+  } = useLanguage();
+  const {
+    data: githubUser,
+    isLoading
+  } = useGitHubUser();
   const sectionRef = useRef<HTMLElement>(null);
-  
+
   // Animation on scroll
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-slide-up');
-            entry.target.classList.remove('opacity-0');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-slide-up');
+          entry.target.classList.remove('opacity-0');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
     const elements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
-    elements?.forEach((el) => {
+    elements?.forEach(el => {
       observer.observe(el);
     });
-    
     return () => {
-      elements?.forEach((el) => {
+      elements?.forEach(el => {
         observer.unobserve(el);
       });
     };
   }, []);
-
-  return (
-    <section id="about" ref={sectionRef} className="section-padding relative bg-secondary/30">
+  return <section id="about" ref={sectionRef} className="section-padding relative bg-secondary/30">
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
           {/* About Content */}
@@ -106,13 +104,8 @@ const About: React.FC = () => {
             </div>
             
             <div className="mt-8 animate-on-scroll opacity-0">
-              <a 
-                href="https://github.com/zeta-develop" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 rounded-full bg-primary text-primary-foreground 
-                          font-medium shadow-soft transition-all duration-300 hover:shadow-soft-lg hover:translate-y-[-2px]"
-              >
+              <a href="https://github.com/zeta-develop" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 rounded-full bg-primary text-primary-foreground 
+                          font-medium shadow-soft transition-all duration-300 hover:shadow-soft-lg hover:translate-y-[-2px]">
                 <Github className="mr-2 h-5 w-5" />
                 {t('hero.viewGithub')}
               </a>
@@ -124,12 +117,7 @@ const About: React.FC = () => {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl blur-xl opacity-70"></div>
               <div className="relative glass glass-dark overflow-hidden rounded-2xl shadow-soft-lg">
-                <img 
-                  src={githubUser?.avatar_url || "https://github.com/zeta-develop.png"} 
-                  alt="Ronald Tellez" 
-                  className="w-full h-auto rounded-2xl transform transition-transform hover:scale-105 duration-700"
-                  style={{ aspectRatio: '1/1', objectFit: 'cover' }}
-                />
+                
                 
                 {/* Floating badges */}
                 <div className="absolute top-4 left-4 glass glass-dark p-3 rounded-full shadow-soft">
@@ -180,8 +168,6 @@ const About: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default About;
