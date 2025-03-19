@@ -1,8 +1,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { ExternalLink, Code, Github, Loader } from 'lucide-react';
+import { ExternalLink, Code, Github, Loader, Star } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useGitHubRepositories, getLanguageColor } from '@/hooks/useGitHub';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
 type ProjectCategory = 'all' | 'frontend' | 'backend' | 'fullstack';
 
@@ -90,7 +91,7 @@ const Projects: React.FC = () => {
             </div>
           ) : error ? (
             <div className="col-span-full text-center py-20">
-              <p className="text-lg text-foreground/70">Failed to load projects</p>
+              <p className="text-lg text-foreground/70">Error: {(error as Error).message}</p>
             </div>
           ) : filteredRepositories?.length === 0 ? (
             <div className="col-span-full text-center py-20">
@@ -98,37 +99,41 @@ const Projects: React.FC = () => {
             </div>
           ) : (
             filteredRepositories?.map((repo, index) => (
-              <div 
+              <Card 
                 key={repo.id}
-                className="animate-on-scroll opacity-0 group"
+                className="animate-on-scroll opacity-0 group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="h-full glass glass-dark rounded-2xl p-6 shadow-soft transition-all duration-300 
-                             hover:shadow-soft-lg hover:translate-y-[-4px] flex flex-col">
-                  {/* Project Header */}
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="flex items-center">
-                      <Github className="h-5 w-5 mr-2 opacity-70" />
-                      <h3 className="font-medium text-lg line-clamp-1">{repo.name}</h3>
-                    </div>
+                <CardHeader className="pb-2">
+                  <div className="flex justify-between items-start">
+                    <CardTitle className="text-lg font-medium line-clamp-1 mb-0">{repo.name}</CardTitle>
                     
-                    {/* Language Badge */}
-                    {repo.language && (
-                      <div className="flex items-center">
-                        <span className={`w-3 h-3 rounded-full mr-1.5 ${getLanguageColor(repo.language)}`}></span>
-                        <span className="text-xs text-foreground/70">{repo.language}</span>
+                    {/* Stars */}
+                    {repo.stargazers_count > 0 && (
+                      <div className="flex items-center text-yellow-500">
+                        <Star className="h-4 w-4 fill-current mr-1" />
+                        <span className="text-xs">{repo.stargazers_count}</span>
                       </div>
                     )}
                   </div>
                   
-                  {/* Project Description */}
-                  <p className="text-sm text-foreground/70 mb-6 line-clamp-3 flex-grow">
+                  {/* Language Badge */}
+                  {repo.language && (
+                    <div className="flex items-center mt-2">
+                      <span className={`w-3 h-3 rounded-full mr-1.5 ${getLanguageColor(repo.language)}`}></span>
+                      <CardDescription className="text-xs">{repo.language}</CardDescription>
+                    </div>
+                  )}
+                </CardHeader>
+                
+                <CardContent className="pt-2">
+                  <p className="text-sm text-foreground/70 mb-4 line-clamp-3 h-[4.5rem]">
                     {repo.description || "No description available"}
                   </p>
                   
                   {/* Project Topics */}
                   {repo.topics && repo.topics.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="flex flex-wrap gap-2 mb-2">
                       {repo.topics.slice(0, 3).map((topic) => (
                         <span 
                           key={topic}
@@ -144,33 +149,32 @@ const Projects: React.FC = () => {
                       )}
                     </div>
                   )}
+                </CardContent>
+                
+                <CardFooter className="pt-0 flex gap-3">
+                  <a
+                    href={repo.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                  >
+                    <Code className="h-4 w-4 mr-1.5" />
+                    {t('projects.viewCode')}
+                  </a>
                   
-                  {/* Project Links */}
-                  <div className="flex gap-3 mt-auto">
+                  {repo.homepage && (
                     <a
-                      href={repo.html_url}
+                      href={repo.homepage}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
                     >
-                      <Code className="h-4 w-4 mr-1.5" />
-                      {t('projects.viewCode')}
+                      <ExternalLink className="h-4 w-4 mr-1.5" />
+                      {t('projects.viewProject')}
                     </a>
-                    
-                    {repo.homepage && (
-                      <a
-                        href={repo.homepage}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-1.5" />
-                        {t('projects.viewProject')}
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
+                  )}
+                </CardFooter>
+              </Card>
             ))
           )}
         </div>
@@ -185,7 +189,7 @@ const Projects: React.FC = () => {
                       font-medium transition-colors hover:bg-secondary/80"
           >
             <Github className="mr-2 h-5 w-5" />
-            {t('hero.viewGithub')}
+            {t('projects.viewMore')}
           </a>
         </div>
       </div>
