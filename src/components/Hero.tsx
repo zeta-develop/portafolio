@@ -1,17 +1,13 @@
-
 import React from 'react';
 import { ArrowRight, Github } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-
 const Hero: React.FC = () => {
-  const { t } = useLanguage();
-
-  return (
-    <section 
-      id="home" 
-      className="min-h-screen flex flex-col justify-center relative pt-20 pb-32 px-6 md:px-10 lg:px-16"
-      style={{ background: 'linear-gradient(to bottom, #000000, #090718)' }}
-    >
+  const {
+    t
+  } = useLanguage();
+  return <section id="home" className="min-h-screen flex flex-col justify-center relative pt-20 pb-32 px-6 md:px-10 lg:px-16" style={{
+    background: 'linear-gradient(to bottom, #000000, #090718)'
+  }}>
       <div className="container mx-auto z-10">
         <div className="flex flex-col items-center justify-center text-center">
           {/* Logo/Initials */}
@@ -23,11 +19,7 @@ const Hero: React.FC = () => {
           <div className="relative mb-8">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/60 to-accent/60 blur-lg opacity-70 animate-pulse-soft"></div>
             <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-primary/30 relative z-10">
-              <img 
-                src="/lovable-uploads/c5f6f8e0-6e5a-477c-921e-6622c25ee04c.png" 
-                alt="Ronald Tellez" 
-                className="w-full h-full object-cover"
-              />
+              <img alt="Ronald Tellez" src="https://avatars.githubusercontent.com/u/80638821?v=4" className="w-full h-full object-cover" />
             </div>
           </div>
           
@@ -43,21 +35,13 @@ const Hero: React.FC = () => {
           
           {/* Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
-            <a 
-              href="#projects" 
-              className="gradient-button"
-            >
+            <a href="#projects" className="gradient-button">
               Ver Proyectos
               <ArrowRight className="h-5 w-5" />
             </a>
             
-            <a 
-              href="https://github.com/zeta-develop" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-full bg-secondary text-secondary-foreground 
-                      font-medium transition-all duration-300 flex items-center gap-2"
-            >
+            <a href="https://github.com/zeta-develop" target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-full bg-secondary text-secondary-foreground 
+                      font-medium transition-all duration-300 flex items-center gap-2">
               <Github className="h-5 w-5" />
               GitHub
             </a>
@@ -71,8 +55,6 @@ const Hero: React.FC = () => {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
