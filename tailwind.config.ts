@@ -87,7 +87,7 @@ export default {
 				},
 				'pulse-soft': {
 					'0%, 100%': { opacity: '1' },
-					'50%': { opacity: '0.8' },
+					'50%': { opacity: '0.7' },
 				},
 				'slide-up': {
 					'0%': { transform: 'translateY(20px)', opacity: '0' },
@@ -121,6 +121,9 @@ export default {
 				'scale-in': 'scale-in 0.3s ease-out forwards',
 				'blur-in': 'blur-in 0.5s ease-out forwards',
 				'rotate-slow': 'rotate-slow 8s linear infinite',
+			},
+			backgroundImage: {
+				'grid-white': 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 32 32\' width=\'32\' height=\'32\' fill=\'none\' stroke=\'rgb(255 255 255 / 0.05)\'%3e%3cpath d=\'M0 .5H31.5V32\'/%3e%3c/svg%3e")',
 			},
 			transitionDuration: {
 				'400': '400ms',

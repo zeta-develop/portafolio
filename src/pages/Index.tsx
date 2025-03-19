@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/context/ThemeContext';
 import { LanguageProvider } from '@/context/LanguageContext';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import Specialties from '@/components/Specialties';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
@@ -23,10 +24,11 @@ const Index = () => {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen bg-black">
           <Header />
           <main className="flex-grow">
             <Hero />
+            <Specialties />
             <About />
             <Projects />
             <Skills />

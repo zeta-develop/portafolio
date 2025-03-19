@@ -21,18 +21,18 @@ const Header: React.FC = () => {
   }, []);
 
   const navigationItems = [
-    { label: t('navigation.home'), href: '#home' },
-    { label: t('navigation.about'), href: '#about' },
-    { label: t('navigation.projects'), href: '#projects' },
-    { label: t('navigation.skills'), href: '#skills' },
-    { label: t('navigation.contact'), href: '#contact' },
+    { label: 'Inicio', href: '#home' },
+    { label: 'Sobre Mí', href: '#about' },
+    { label: 'Proyectos', href: '#projects' },
+    { label: 'Experiencia', href: '#skills' },
+    { label: 'Contacto', href: '#contact' },
   ];
 
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'py-3 glass glass-dark shadow-soft' 
+          ? 'py-3 bg-black/80 backdrop-blur-md border-b border-white/5' 
           : 'py-5 bg-transparent'
       }`}
     >
@@ -40,9 +40,9 @@ const Header: React.FC = () => {
         {/* Logo */}
         <a 
           href="#home" 
-          className="font-bold text-xl tracking-tight transition-all hover:opacity-80"
+          className="font-bold text-xl text-primary tracking-tight transition-all hover:opacity-80"
         >
-          Ronald Tellez
+          R.T.R.
         </a>
 
         {/* Desktop Navigation */}
@@ -52,7 +52,7 @@ const Header: React.FC = () => {
               <li key={item.href}>
                 <a 
                   href={item.href}
-                  className="relative text-sm font-medium transition-colors hover:text-primary/80
+                  className="relative text-sm font-medium transition-colors hover:text-primary
                     after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 
                     after:bottom-[-4px] after:left-0 after:bg-primary 
                     after:origin-bottom-right after:transition-transform 
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
       
       {/* Mobile Menu */}
       <div 
-        className={`fixed inset-0 z-40 bg-background/90 backdrop-blur-lg transition-transform duration-300 ease-in-out transform md:hidden ${
+        className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-lg transition-transform duration-300 ease-in-out transform md:hidden ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{ top: '60px' }}
@@ -97,7 +97,7 @@ const Header: React.FC = () => {
               <li key={item.href} className="w-full">
                 <a 
                   href={item.href}
-                  className="block py-2 text-center text-lg font-medium transition-colors hover:text-primary/80"
+                  className="block py-2 text-center text-lg font-medium transition-colors hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
