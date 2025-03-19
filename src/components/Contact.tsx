@@ -54,7 +54,7 @@ const Contact: React.FC = () => {
     setTimeout(() => {
       toast({
         title: t('contact.success'),
-        description: `Thank you ${formData.name}! Your message has been sent.`,
+        description: `${t('contact.success')} ${formData.name}!`,
       });
       
       setFormData({
@@ -159,9 +159,9 @@ const Contact: React.FC = () => {
           {/* Contact Info */}
           <div className="lg:w-1/2">
             <div className="mb-8 animate-on-scroll opacity-0">
-              <h3 className="text-xl font-semibold mb-4">Let's connect</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('contact.connect')}</h3>
               <p className="text-foreground/70">
-                Feel free to reach out for collaborations, questions, or just to say hello!
+                {t('contact.connectText')}
               </p>
             </div>
             
@@ -201,7 +201,7 @@ const Contact: React.FC = () => {
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">Location</h4>
+                  <h4 className="font-medium mb-1">{t('contact.location')}</h4>
                   <p className="text-foreground/70">Colombia</p>
                 </div>
               </div>
@@ -209,7 +209,7 @@ const Contact: React.FC = () => {
             
             {/* Social Links */}
             <div className="mt-10 animate-on-scroll opacity-0">
-              <h4 className="font-medium mb-4">Connect with me</h4>
+              <h4 className="font-medium mb-4">{t('contact.connectWithMe')}</h4>
               <div className="flex space-x-4">
                 <a 
                   href="https://github.com/ronaldtellez" 

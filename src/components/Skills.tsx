@@ -156,8 +156,7 @@ const Skills: React.FC = () => {
             {/* Skills Summary */}
             <div className="mt-8 glass glass-dark rounded-2xl p-6 shadow-soft animate-on-scroll opacity-0">
               <p className="text-foreground/80">
-                As a Full Stack Developer, I combine technical expertise with strong soft skills to deliver high-quality solutions. 
-                I continuously learn new technologies and frameworks to stay current with industry trends.
+                {t('skills.summary')}
               </p>
             </div>
           </div>

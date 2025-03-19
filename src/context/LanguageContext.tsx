@@ -1,6 +1,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import translations from '../utils/i18n';
+import enTranslations from '../translations/en';
+import esTranslations from '../translations/es';
 
 export type Language = 'es' | 'en';
 
@@ -10,6 +11,11 @@ interface LanguageContextType {
   toggleLanguage: () => void;
   t: (key: string) => string;
 }
+
+const translations = {
+  en: enTranslations,
+  es: esTranslations
+};
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 

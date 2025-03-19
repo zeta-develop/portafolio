@@ -21,11 +21,11 @@ const Header: React.FC = () => {
   }, []);
 
   const navigationItems = [
-    { label: 'Inicio', href: '#home' },
-    { label: 'Sobre Mí', href: '#about' },
-    { label: 'Proyectos', href: '#projects' },
-    { label: 'Experiencia', href: '#skills' },
-    { label: 'Contacto', href: '#contact' },
+    { label: t('navigation.home'), href: '#home' },
+    { label: t('navigation.about'), href: '#about' },
+    { label: t('navigation.projects'), href: '#projects' },
+    { label: t('navigation.skills'), href: '#skills' },
+    { label: t('navigation.contact'), href: '#contact' },
   ];
 
   return (
