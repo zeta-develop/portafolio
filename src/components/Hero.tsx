@@ -21,31 +21,18 @@ const Hero: React.FC = () => {
       className="min-h-screen flex flex-col justify-center relative overflow-hidden pt-24"
     >
       <div className="absolute inset-0 z-0">
+        {/* Main background image */}
+        <img 
+          src="/lovable-uploads/8812eb79-5bfc-4ad5-9eb5-e444b36edc2f.png" 
+          alt="Code on laptop screen" 
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+          aria-hidden="true"
+        />
         <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-background to-transparent"></div>
         <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-background to-transparent"></div>
       </div>
       
-      {/* Decorative code images */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <img 
-          src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60" 
-          alt="" 
-          className="absolute -right-20 top-40 w-64 h-48 object-cover rounded-lg opacity-10 transform rotate-6 blur-sm"
-          aria-hidden="true"
-        />
-        <img 
-          src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=60" 
-          alt="" 
-          className="absolute -left-16 top-1/4 w-56 h-40 object-cover rounded-lg opacity-10 transform -rotate-3 blur-sm"
-          aria-hidden="true"
-        />
-        <img 
-          src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=60" 
-          alt="" 
-          className="absolute right-1/4 bottom-40 w-72 h-48 object-cover rounded-lg opacity-10 transform rotate-2 blur-sm"
-          aria-hidden="true"
-        />
-      </div>
+      {/* Remove decorative code images since we're using the uploaded image now */}
       
       <div ref={containerRef} className="container mx-auto px-6 md:px-8 z-10 appear-animate">
         <div className="max-w-4xl mx-auto">
