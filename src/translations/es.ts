@@ -24,7 +24,7 @@ const translations = {
     technologies: 'Tecnologías',
     education: 'Formación Académica',
     professionalExperience: 'Experiencia Profesional',
-    jobTitle1: 'Desarrollador Full Stack Senior',
+    jobTitle1: 'Desarrollador Full Stack',
     jobCompany1: 'Innovatech Solutions',
     jobPeriod1: '2020 - Presente',
     jobDescription1: 'Desarrollo de aplicaciones web empresariales utilizando React, Node.js y bases de datos SQL/NoSQL. Implementación de arquitecturas escalables y optimización de rendimiento.',
