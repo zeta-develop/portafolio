@@ -60,8 +60,8 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				sans: ["Inter var", "sans-serif"],
-				mono: ["SF Mono", "monospace"],
+				sans: ["Roboto", "system-ui", "sans-serif"],
+				mono: ["Roboto Mono", "monospace"],
 			},
 			boxShadow: {
 				'soft': '0 4px 20px rgba(0, 0, 0, 0.05)',
