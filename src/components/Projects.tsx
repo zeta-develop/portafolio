@@ -1,20 +1,74 @@
 
-import React, { useState, useEffect, useRef } from 'react';
-import { ExternalLink, Code, Github, Loader, Star } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { ExternalLink, Code, Loader, Star } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { useGitHubRepositories, getLanguageColor } from '@/hooks/useGitHub';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { useQuery } from '@tanstack/react-query';
 
 type ProjectCategory = 'all' | 'frontend' | 'backend' | 'fullstack';
 
+interface Project {
+  id: number;
+  name: string;
+  description: string;
+  html_url: string;
+  homepage: string;
+  topics: string[];
+  language: string;
+  stargazers_count: number;
+}
+
+// Function to get language color based on the language name
+const getLanguageColor = (language: string): string => {
+  const colors: Record<string, string> = {
+    JavaScript: 'bg-yellow-400',
+    TypeScript: 'bg-blue-600',
+    HTML: 'bg-orange-600',
+    CSS: 'bg-blue-400',
+    Python: 'bg-green-500',
+    Java: 'bg-red-500',
+    'C#': 'bg-purple-600',
+    PHP: 'bg-indigo-400',
+    Go: 'bg-blue-300',
+    Ruby: 'bg-red-600',
+    Swift: 'bg-orange-500',
+    Kotlin: 'bg-purple-500',
+    Rust: 'bg-amber-600',
+    Dart: 'bg-cyan-500',
+    // Add more languages as needed
+  };
+
+  return colors[language] || 'bg-gray-500';
+};
+
+// Function to fetch projects from the Supabase API
+const fetchProjects = async (): Promise<Project[]> => {
+  const response = await fetch('https://leowfipscqxqqtscuomq.supabase.co/functions/v1/projects', {
+    headers: {
+      'Authorization': 'Bearer ddUBJpUfUMIkszotJ3x5nU9TZxDK79kZ4c2K2epu'
+    }
+  });
+  
+  if (!response.ok) {
+    throw new Error('Error fetching projects');
+  }
+  
+  return response.json();
+};
+
 const Projects: React.FC = () => {
   const { t } = useLanguage();
-  const { data: repositories, isLoading, error } = useGitHubRepositories();
+  const { data: projects, isLoading, error } = useQuery({
+    queryKey: ['projects'],
+    queryFn: fetchProjects,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+  
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('all');
   const sectionRef = useRef<HTMLElement>(null);
   
   // Animation on scroll
-  useEffect(() => {
+  React.useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -39,11 +93,11 @@ const Projects: React.FC = () => {
     };
   }, []);
 
-  // Filter repositories based on selected category
-  const filteredRepositories = repositories?.filter((repo) => {
+  // Filter projects based on selected category
+  const filteredProjects = projects?.filter((project) => {
     if (selectedCategory === 'all') return true;
     
-    const topics = repo.topics || [];
+    const topics = project.topics || [];
     return topics.includes(selectedCategory);
   });
 
@@ -93,48 +147,48 @@ const Projects: React.FC = () => {
             <div className="col-span-full text-center py-20">
               <p className="text-lg text-foreground/70">Error: {(error as Error).message}</p>
             </div>
-          ) : filteredRepositories?.length === 0 ? (
+          ) : filteredProjects?.length === 0 ? (
             <div className="col-span-full text-center py-20">
               <p className="text-lg text-foreground/70">No projects found in this category</p>
             </div>
           ) : (
-            filteredRepositories?.map((repo, index) => (
+            filteredProjects?.map((project, index) => (
               <Card 
-                key={repo.id}
+                key={project.id}
                 className="animate-on-scroll opacity-0 group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <CardHeader className="pb-2">
                   <div className="flex justify-between items-start">
-                    <CardTitle className="text-lg font-medium line-clamp-1 mb-0">{repo.name}</CardTitle>
+                    <CardTitle className="text-lg font-medium line-clamp-1 mb-0">{project.name}</CardTitle>
                     
                     {/* Stars */}
-                    {repo.stargazers_count > 0 && (
+                    {project.stargazers_count > 0 && (
                       <div className="flex items-center text-yellow-500">
                         <Star className="h-4 w-4 fill-current mr-1" />
-                        <span className="text-xs">{repo.stargazers_count}</span>
+                        <span className="text-xs">{project.stargazers_count}</span>
                       </div>
                     )}
                   </div>
                   
                   {/* Language Badge */}
-                  {repo.language && (
+                  {project.language && (
                     <div className="flex items-center mt-2">
-                      <span className={`w-3 h-3 rounded-full mr-1.5 ${getLanguageColor(repo.language)}`}></span>
-                      <CardDescription className="text-xs">{repo.language}</CardDescription>
+                      <span className={`w-3 h-3 rounded-full mr-1.5 ${getLanguageColor(project.language)}`}></span>
+                      <CardDescription className="text-xs">{project.language}</CardDescription>
                     </div>
                   )}
                 </CardHeader>
                 
                 <CardContent className="pt-2">
                   <p className="text-sm text-foreground/70 mb-4 line-clamp-3 h-[4.5rem]">
-                    {repo.description || "No description available"}
+                    {project.description || "No description available"}
                   </p>
                   
                   {/* Project Topics */}
-                  {repo.topics && repo.topics.length > 0 && (
+                  {project.topics && project.topics.length > 0 && (
                     <div className="flex flex-wrap gap-2 mb-2">
-                      {repo.topics.slice(0, 3).map((topic) => (
+                      {project.topics.slice(0, 3).map((topic) => (
                         <span 
                           key={topic}
                           className="text-xs px-2 py-1 bg-primary/10 rounded-full"
@@ -142,9 +196,9 @@ const Projects: React.FC = () => {
                           {topic}
                         </span>
                       ))}
-                      {repo.topics.length > 3 && (
+                      {project.topics.length > 3 && (
                         <span className="text-xs px-2 py-1 bg-primary/5 rounded-full">
-                          +{repo.topics.length - 3}
+                          +{project.topics.length - 3}
                         </span>
                       )}
                     </div>
@@ -153,7 +207,7 @@ const Projects: React.FC = () => {
                 
                 <CardFooter className="pt-0 flex gap-3">
                   <a
-                    href={repo.html_url}
+                    href={project.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
@@ -162,9 +216,9 @@ const Projects: React.FC = () => {
                     {t('projects.viewCode')}
                   </a>
                   
-                  {repo.homepage && (
+                  {project.homepage && (
                     <a
-                      href={repo.homepage}
+                      href={project.homepage}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
@@ -188,7 +242,7 @@ const Projects: React.FC = () => {
             className="inline-flex items-center px-6 py-3 rounded-full bg-secondary text-secondary-foreground 
                       font-medium transition-colors hover:bg-secondary/80"
           >
-            <Github className="mr-2 h-5 w-5" />
+            <Code className="mr-2 h-5 w-5" />
             {t('projects.viewMore')}
           </a>
         </div>
