@@ -3,66 +3,13 @@ import React, { useState, useRef } from 'react';
 import { ExternalLink, Code, Loader, Star } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { useQuery } from '@tanstack/react-query';
+import { useGitHubRepositories, getLanguageColor } from '@/hooks/useGitHub';
 
 type ProjectCategory = 'all' | 'frontend' | 'backend' | 'fullstack';
 
-interface Project {
-  id: number;
-  name: string;
-  description: string;
-  html_url: string;
-  homepage: string;
-  topics: string[];
-  language: string;
-  stargazers_count: number;
-}
-
-// Function to get language color based on the language name
-const getLanguageColor = (language: string): string => {
-  const colors: Record<string, string> = {
-    JavaScript: 'bg-yellow-400',
-    TypeScript: 'bg-blue-600',
-    HTML: 'bg-orange-600',
-    CSS: 'bg-blue-400',
-    Python: 'bg-green-500',
-    Java: 'bg-red-500',
-    'C#': 'bg-purple-600',
-    PHP: 'bg-indigo-400',
-    Go: 'bg-blue-300',
-    Ruby: 'bg-red-600',
-    Swift: 'bg-orange-500',
-    Kotlin: 'bg-purple-500',
-    Rust: 'bg-amber-600',
-    Dart: 'bg-cyan-500',
-    // Add more languages as needed
-  };
-
-  return colors[language] || 'bg-gray-500';
-};
-
-// Function to fetch projects from the Supabase API
-const fetchProjects = async (): Promise<Project[]> => {
-  const response = await fetch('https://leowfipscqxqqtscuomq.supabase.co/functions/v1/projects', {
-    headers: {
-      'Authorization': 'Bearer ddUBJpUfUMIkszotJ3x5nU9TZxDK79kZ4c2K2epu'
-    }
-  });
-  
-  if (!response.ok) {
-    throw new Error('Error fetching projects');
-  }
-  
-  return response.json();
-};
-
 const Projects: React.FC = () => {
   const { t } = useLanguage();
-  const { data: projects, isLoading, error } = useQuery({
-    queryKey: ['projects'],
-    queryFn: fetchProjects,
-    staleTime: 5 * 60 * 1000, // 5 minutes
-  });
+  const { data: projects, isLoading, error } = useGitHubRepositories();
   
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('all');
   const sectionRef = useRef<HTMLElement>(null);
