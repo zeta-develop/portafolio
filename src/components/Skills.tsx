@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import { Progress } from '@/components/ui/progress';
 
 interface Skill {
   name: string;
@@ -54,40 +55,16 @@ const Skills: React.FC = () => {
       { threshold: 0.1 }
     );
     
-    const progressBars = sectionRef.current?.querySelectorAll('.skill-progress');
-    progressBars?.forEach((bar) => {
-      observer.observe(bar);
-    });
-    
     const elements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
     elements?.forEach((el) => {
       observer.observe(el);
     });
     
     return () => {
-      progressBars?.forEach((bar) => {
-        observer.unobserve(bar);
-      });
       elements?.forEach((el) => {
         observer.unobserve(el);
       });
     };
-  }, []);
-
-  // Animation for progress bars  
-  useEffect(() => {
-    const progressBars = sectionRef.current?.querySelectorAll('.skill-progress-bar');
-    
-    const animateProgressBars = () => {
-      progressBars?.forEach((bar) => {
-        const level = bar.getAttribute('data-level');
-        if (level) {
-          (bar as HTMLElement).style.width = `${level}%`;
-        }
-      });
-    };
-    
-    setTimeout(animateProgressBars, 500);
   }, []);
 
   return (
@@ -107,21 +84,15 @@ const Skills: React.FC = () => {
             <h3 className="text-xl font-semibold mb-6">{t('skills.technical')}</h3>
             <div className="space-y-6">
               {technicalSkills.map((skill, index) => (
-                <div key={skill.name} className="skill-progress" style={{ transitionDelay: `${index * 100}ms` }}>
-                  <div className="flex justify-between items-center mb-2">
-                    <div className="flex items-center">
-                      <span className="mr-2 text-xl">{skill.icon}</span>
-                      <span className="font-medium">{skill.name}</span>
-                    </div>
-                    <span className="text-sm font-mono">{skill.level}%</span>
+                <div key={skill.name} className="skill-item" style={{ transitionDelay: `${index * 100}ms` }}>
+                  <div className="flex items-center mb-2">
+                    <span className="mr-2 text-xl">{skill.icon}</span>
+                    <span className="font-medium">{skill.name}</span>
                   </div>
-                  <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
-                    <div 
-                      className="skill-progress-bar h-full bg-primary rounded-full transition-all duration-1000 ease-out"
-                      data-level={skill.level}
-                      style={{ width: '0%' }}
-                    ></div>
-                  </div>
+                  <Progress 
+                    value={skill.level} 
+                    className="h-2 bg-secondary/50"
+                  />
                 </div>
               ))}
             </div>
@@ -134,21 +105,17 @@ const Skills: React.FC = () => {
               {softSkills.map((skill, index) => (
                 <div 
                   key={skill.name} 
-                  className="skill-progress glass glass-dark rounded-2xl p-6 shadow-soft animate-on-scroll opacity-0"
+                  className="skill-item glass glass-dark rounded-2xl p-6 shadow-soft animate-on-scroll opacity-0"
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <div className="text-center mb-4">
-                    <h4 className="font-medium mb-1">{skill.name}</h4>
-                    <span className="text-sm text-foreground/70">{skill.level}%</span>
+                    <h4 className="font-medium">{skill.name}</h4>
                   </div>
                   
-                  <div className="w-full h-2 bg-secondary/50 rounded-full overflow-hidden mb-2">
-                    <div 
-                      className="skill-progress-bar h-full bg-primary rounded-full transition-all duration-1000 ease-out"
-                      data-level={skill.level}
-                      style={{ width: '0%' }}
-                    ></div>
-                  </div>
+                  <Progress 
+                    value={skill.level} 
+                    className="h-2 bg-secondary/50"
+                  />
                 </div>
               ))}
             </div>
