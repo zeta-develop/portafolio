@@ -1,17 +1,14 @@
 
 import React, { useEffect, useRef } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
-import { Progress } from '@/components/ui/progress';
 
 interface Skill {
   name: string;
-  level: number;
   icon: string;
 }
 
 interface SoftSkill {
   name: string;
-  level: number;
 }
 
 const Skills: React.FC = () => {
@@ -20,25 +17,25 @@ const Skills: React.FC = () => {
   
   // Technical skills data
   const technicalSkills: Skill[] = [
-    { name: 'JavaScript', level: 90, icon: '💻' },
-    { name: 'React.js', level: 85, icon: '⚛️' },
-    { name: 'Node.js', level: 80, icon: '🔄' },
-    { name: 'HTML/CSS', level: 90, icon: '🎨' },
-    { name: 'TypeScript', level: 75, icon: '📝' },
-    { name: 'Next.js', level: 80, icon: '⚡' },
-    { name: 'SQL', level: 70, icon: '🗄️' },
-    { name: 'Python', level: 65, icon: '🐍' },
-    { name: 'Git', level: 85, icon: '📊' },
-    { name: 'RESTful APIs', level: 90, icon: '🔌' },
+    { name: 'JavaScript', icon: '💻' },
+    { name: 'React.js', icon: '⚛️' },
+    { name: 'Node.js', icon: '🔄' },
+    { name: 'HTML/CSS', icon: '🎨' },
+    { name: 'TypeScript', icon: '📝' },
+    { name: 'Next.js', icon: '⚡' },
+    { name: 'SQL', icon: '🗄️' },
+    { name: 'Python', icon: '🐍' },
+    { name: 'Git', icon: '📊' },
+    { name: 'RESTful APIs', icon: '🔌' },
   ];
   
   // Soft skills data
   const softSkills: SoftSkill[] = [
-    { name: 'Teamwork', level: 90 },
-    { name: 'Communication', level: 85 },
-    { name: 'Problem Solving', level: 95 },
-    { name: 'Adaptability', level: 80 },
-    { name: 'Time Management', level: 75 },
+    { name: 'Teamwork' },
+    { name: 'Communication' },
+    { name: 'Problem Solving' },
+    { name: 'Adaptability' },
+    { name: 'Time Management' },
   ];
 
   // Animation on scroll
@@ -82,17 +79,15 @@ const Skills: React.FC = () => {
           {/* Technical Skills */}
           <div className="lg:w-1/2 animate-on-scroll opacity-0">
             <h3 className="text-xl font-semibold mb-6">{t('skills.technical')}</h3>
-            <div className="space-y-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {technicalSkills.map((skill, index) => (
-                <div key={skill.name} className="skill-item" style={{ transitionDelay: `${index * 100}ms` }}>
-                  <div className="flex items-center mb-2">
-                    <span className="mr-2 text-xl">{skill.icon}</span>
-                    <span className="font-medium">{skill.name}</span>
-                  </div>
-                  <Progress 
-                    value={skill.level} 
-                    className="h-2 bg-secondary/50"
-                  />
+                <div 
+                  key={skill.name}
+                  className="skill-item flex items-center p-3 bg-secondary/20 rounded-lg shadow-soft transition-all duration-300 hover:bg-primary/10 hover:scale-105"
+                  style={{ transitionDelay: `${index * 50}ms` }}
+                >
+                  <span className="text-2xl mr-3">{skill.icon}</span>
+                  <span className="font-medium">{skill.name}</span>
                 </div>
               ))}
             </div>
@@ -105,17 +100,10 @@ const Skills: React.FC = () => {
               {softSkills.map((skill, index) => (
                 <div 
                   key={skill.name} 
-                  className="skill-item glass glass-dark rounded-2xl p-6 shadow-soft animate-on-scroll opacity-0"
+                  className="skill-item glass glass-dark rounded-2xl p-6 shadow-soft animate-on-scroll opacity-0 text-center transition-all duration-300 hover:bg-primary/10 hover:scale-105"
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                  <div className="text-center mb-4">
-                    <h4 className="font-medium">{skill.name}</h4>
-                  </div>
-                  
-                  <Progress 
-                    value={skill.level} 
-                    className="h-2 bg-secondary/50"
-                  />
+                  <h4 className="font-medium">{skill.name}</h4>
                 </div>
               ))}
             </div>

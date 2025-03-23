@@ -1,30 +1,16 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { ExternalLink, Code, Loader, Star } from 'lucide-react';
+import { ExternalLink, Code, Star } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { useGitHubRepositories, getLanguageColor } from '@/hooks/useGitHub';
+import projects from '@/data/projects';
 
 type ProjectCategory = 'all' | 'frontend' | 'backend' | 'fullstack';
 
 const Projects: React.FC = () => {
   const { t } = useLanguage();
-  const { data: projects, isLoading, error, refetch } = useGitHubRepositories();
-  
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('all');
   const sectionRef = useRef<HTMLElement>(null);
-  
-  // Force refetch when component mounts
-  useEffect(() => {
-    refetch();
-    
-    // Set up periodic refetch (optional)
-    const interval = setInterval(() => {
-      refetch();
-    }, 60000); // Refetch every minute
-    
-    return () => clearInterval(interval);
-  }, [refetch]);
   
   // Animation on scroll
   useEffect(() => {
@@ -53,11 +39,9 @@ const Projects: React.FC = () => {
   }, []);
 
   // Filter projects based on selected category
-  const filteredProjects = projects?.filter((project) => {
+  const filteredProjects = projects.filter((project) => {
     if (selectedCategory === 'all') return true;
-    
-    const topics = project.topics || [];
-    return topics.includes(selectedCategory);
+    return project.topics.includes(selectedCategory);
   });
 
   // Project filter categories
@@ -67,9 +51,6 @@ const Projects: React.FC = () => {
     { id: 'backend', label: t('projects.filter.backend') },
     { id: 'fullstack', label: t('projects.filter.fullstack') },
   ];
-
-  // Console log for debugging
-  console.log("GitHub Projects:", projects);
 
   return (
     <section id="projects" ref={sectionRef} className="section-padding">
@@ -101,20 +82,12 @@ const Projects: React.FC = () => {
         
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {isLoading ? (
-            <div className="col-span-full flex justify-center py-20">
-              <Loader className="animate-spin h-8 w-8 text-primary" />
-            </div>
-          ) : error ? (
-            <div className="col-span-full text-center py-20">
-              <p className="text-lg text-foreground/70">Error: {(error as Error).message}</p>
-            </div>
-          ) : filteredProjects?.length === 0 ? (
+          {filteredProjects.length === 0 ? (
             <div className="col-span-full text-center py-20">
               <p className="text-lg text-foreground/70">No projects found in this category</p>
             </div>
           ) : (
-            filteredProjects?.map((project, index) => (
+            filteredProjects.map((project, index) => (
               <Card 
                 key={project.id}
                 className="animate-on-scroll opacity-0 group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300"
@@ -124,22 +97,14 @@ const Projects: React.FC = () => {
                   <div className="flex justify-between items-start">
                     <CardTitle className="text-lg font-medium line-clamp-1 mb-0">{project.name}</CardTitle>
                     
-                    {/* Stars */}
-                    {project.stargazers_count > 0 && (
+                    {/* Featured Badge */}
+                    {project.featured && (
                       <div className="flex items-center text-yellow-500">
                         <Star className="h-4 w-4 fill-current mr-1" />
-                        <span className="text-xs">{project.stargazers_count}</span>
+                        <span className="text-xs">Featured</span>
                       </div>
                     )}
                   </div>
-                  
-                  {/* Language Badge */}
-                  {project.language && (
-                    <div className="flex items-center mt-2">
-                      <span className={`w-3 h-3 rounded-full mr-1.5 ${getLanguageColor(project.language)}`}></span>
-                      <CardDescription className="text-xs">{project.language}</CardDescription>
-                    </div>
-                  )}
                 </CardHeader>
                 
                 <CardContent className="pt-2">
@@ -169,7 +134,7 @@ const Projects: React.FC = () => {
                 
                 <CardFooter className="pt-0 flex gap-3">
                   <a
-                    href={project.html_url}
+                    href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
@@ -178,9 +143,9 @@ const Projects: React.FC = () => {
                     {t('projects.viewCode')}
                   </a>
                   
-                  {project.homepage && (
+                  {project.demo && (
                     <a
-                      href={project.homepage}
+                      href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
