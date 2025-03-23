@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ExternalLink, Code, Loader, Star } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,13 +9,25 @@ type ProjectCategory = 'all' | 'frontend' | 'backend' | 'fullstack';
 
 const Projects: React.FC = () => {
   const { t } = useLanguage();
-  const { data: projects, isLoading, error } = useGitHubRepositories();
+  const { data: projects, isLoading, error, refetch } = useGitHubRepositories();
   
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('all');
   const sectionRef = useRef<HTMLElement>(null);
   
+  // Force refetch when component mounts
+  useEffect(() => {
+    refetch();
+    
+    // Set up periodic refetch (optional)
+    const interval = setInterval(() => {
+      refetch();
+    }, 60000); // Refetch every minute
+    
+    return () => clearInterval(interval);
+  }, [refetch]);
+  
   // Animation on scroll
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -55,6 +67,9 @@ const Projects: React.FC = () => {
     { id: 'backend', label: t('projects.filter.backend') },
     { id: 'fullstack', label: t('projects.filter.fullstack') },
   ];
+
+  // Console log for debugging
+  console.log("GitHub Projects:", projects);
 
   return (
     <section id="projects" ref={sectionRef} className="section-padding">

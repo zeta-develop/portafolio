@@ -1,5 +1,4 @@
 
-import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 interface Repository {
@@ -56,19 +55,23 @@ const fetchRepositories = async (): Promise<Repository[]> => {
 
 export function useGitHubUser() {
   return useQuery({
-    queryKey: ['githubUser'],
+    queryKey: ['githubUser', Date.now()], // Add timestamp to ensure re-fetch on reload
     queryFn: fetchGitHubUser,
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    refetchOnWindowFocus: true, // Refetch when window regains focus
+    staleTime: 1000, // Short stale time to refresh on reload
+    refetchOnWindowFocus: true,
+    refetchOnMount: true,
+    refetchOnReconnect: true,
   });
 }
 
 export function useGitHubRepositories() {
   return useQuery({
-    queryKey: ['githubRepos'],
+    queryKey: ['githubRepos', Date.now()], // Add timestamp to ensure re-fetch on reload
     queryFn: fetchRepositories,
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    refetchOnWindowFocus: true, // Refetch when window regains focus
+    staleTime: 1000, // Short stale time to refresh on reload
+    refetchOnWindowFocus: true,
+    refetchOnMount: true,
+    refetchOnReconnect: true,
   });
 }
 
