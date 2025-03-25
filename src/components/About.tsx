@@ -79,17 +79,17 @@ const About: React.FC = () => {
             
             <div className="flex flex-wrap gap-8 mt-10 animate-on-scroll opacity-0">
               <div className="flex flex-col items-center">
-                <div className="text-3xl font-bold mb-2">5+</div>
+                <div className="text-3xl font-bold mb-2">1+</div>
                 <div className="text-sm text-foreground/70">{t('about.experience')}</div>
               </div>
               
               <div className="flex flex-col items-center">
-                <div className="text-3xl font-bold mb-2">30+</div>
+                <div className="text-3xl font-bold mb-2">3+</div>
                 <div className="text-sm text-foreground/70">{t('about.projects')}</div>
               </div>
               
               <div className="flex flex-col items-center">
-                <div className="text-3xl font-bold mb-2">20+</div>
+                <div className="text-3xl font-bold mb-2">4+</div>
                 <div className="text-sm text-foreground/70">{t('about.technologies')}</div>
               </div>
             </div>
