@@ -2,11 +2,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Code, Briefcase, Github, GraduationCap, Award, Rocket } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { useGitHubUser } from '@/hooks/useGitHub';
 
 const About: React.FC = () => {
   const { t } = useLanguage();
-  const { data: githubUser, isLoading } = useGitHubUser();
   const sectionRef = useRef<HTMLElement>(null);
 
   // Animation on scroll
@@ -109,7 +107,7 @@ const About: React.FC = () => {
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl blur-xl opacity-70"></div>
               <div className="relative glass glass-dark overflow-hidden rounded-2xl shadow-soft-lg">
                 <img 
-                  src={githubUser?.avatar_url || "https://avatars.githubusercontent.com/u/80638821?v=4"} 
+                  src="https://avatars.githubusercontent.com/u/80638821?v=4&size=720"
                   alt="Ronald Tellez" 
                   className="w-full h-auto rounded-2xl transform transition-transform hover:scale-105 duration-700"
                   style={{ aspectRatio: '1/1', objectFit: 'cover' }}
