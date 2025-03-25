@@ -3,6 +3,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ExternalLink, Code, Star } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import projects from '@/data/projects';
 
 type ProjectCategory = 'all' | 'frontend' | 'backend' | 'fullstack';
@@ -10,6 +12,7 @@ type ProjectCategory = 'all' | 'frontend' | 'backend' | 'fullstack';
 const Projects: React.FC = () => {
   const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('all');
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
   const sectionRef = useRef<HTMLElement>(null);
   
   // Animation on scroll
@@ -37,6 +40,14 @@ const Projects: React.FC = () => {
       });
     };
   }, []);
+
+  // Handle image load
+  const handleImageLoad = (projectId: number) => {
+    setLoadedImages(prev => ({
+      ...prev,
+      [projectId]: true
+    }));
+  };
 
   // Filter projects based on selected category
   const filteredProjects = projects.filter((project) => {
@@ -93,16 +104,27 @@ const Projects: React.FC = () => {
                 className="animate-on-scroll opacity-0 group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                {/* Project Image */}
-                {project.image && (
-                  <div className="w-full h-48 overflow-hidden">
-                    <img 
-                      src={project.image} 
-                      alt={project.name}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                )}
+                {/* Project Image with Skeleton Loading */}
+                <div className="w-full h-48 overflow-hidden bg-muted">
+                  {project.image && (
+                    <>
+                      {!loadedImages[project.id] && (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <Skeleton className="w-full h-48" />
+                        </div>
+                      )}
+                      <img 
+                        src={`${project.image}?w=600&h=400&auto=format&fit=crop`}
+                        alt={project.name}
+                        className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${
+                          loadedImages[project.id] ? 'block' : 'hidden'
+                        }`}
+                        onLoad={() => handleImageLoad(project.id)}
+                        loading="lazy"
+                      />
+                    </>
+                  )}
+                </div>
                 
                 <CardHeader className="pb-2">
                   <div className="flex justify-between items-start">
