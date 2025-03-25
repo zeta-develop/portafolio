@@ -24,13 +24,6 @@ const Footer: React.FC = () => {
             </p>
           </div>
           
-          <div className="flex items-center">
-            <p className="text-sm text-foreground/70 mr-2">
-              {t('footer.madeWith')} 
-              <Heart className="h-3 w-3 inline mx-1 text-red-500" />
-            </p>
-          </div>
-          
           <button
             onClick={scrollToTop}
             className="mt-4 md:mt-0 p-3 rounded-full bg-primary text-primary-foreground 

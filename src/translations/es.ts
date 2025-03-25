@@ -24,18 +24,10 @@ const translations = {
     technologies: 'Tecnologías',
     education: 'Formación Académica',
     professionalExperience: 'Experiencia Profesional',
-    jobTitle1: 'Desarrollador Full Stack',
-    jobCompany1: 'Innovatech Solutions',
-    jobPeriod1: '2020 - Presente',
-    jobDescription1: 'Desarrollo de aplicaciones web empresariales utilizando React, Node.js y bases de datos SQL/NoSQL. Implementación de arquitecturas escalables y optimización de rendimiento.',
-    jobTitle2: 'Desarrollador Frontend',
-    jobCompany2: 'WebTech Labs',
-    jobPeriod2: '2018 - 2020',
-    jobDescription2: 'Diseño y desarrollo de interfaces de usuario responsivas utilizando HTML5, CSS3, JavaScript y frameworks modernos como React.',
-    jobTitle3: 'Desarrollador Web Junior',
-    jobCompany3: 'Digital Solutions',
-    jobPeriod3: '2016 - 2018',
-    jobDescription3: 'Colaboración en el desarrollo de sitios web corporativos y tiendas online, implementando funcionalidades y realizando mantenimiento.',
+    jobTitle1: 'Lider de equipo',
+    jobCompany1: 'Yazaki NIC',
+    jobPeriod1: '2022 - Presente',
+    jobDescription1: 'Responsable de la coordinación y supervisión del equipo de mantenimiento, así como de la implementación de mejoras en los procesos de producción.',
     degree1: 'Ingenieria en la informacion con enfasis en desarrollo web y marketing digital (1er AÑO)',
     school1: 'UNAM - LEON',
     degree2: 'Tecnico General en electronica basica (cursada)',
@@ -58,9 +50,6 @@ const translations = {
     viewMore: 'Ver Más Proyectos',
     filter: {
       all: 'Todos',
-      frontend: 'Frontend',
-      backend: 'Backend',
-      fullstack: 'Full Stack',
     },
   },
   skills: {
@@ -86,7 +75,6 @@ const translations = {
   },
   footer: {
     rights: 'Todos los derechos reservados',
-    madeWith: 'Hecho con',
   },
 };
 
