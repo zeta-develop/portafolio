@@ -93,6 +93,17 @@ const Projects: React.FC = () => {
                 className="animate-on-scroll opacity-0 group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
+                {/* Project Image */}
+                {project.image && (
+                  <div className="w-full h-48 overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.name}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                )}
+                
                 <CardHeader className="pb-2">
                   <div className="flex justify-between items-start">
                     <CardTitle className="text-lg font-medium line-clamp-1 mb-0">{project.name}</CardTitle>
