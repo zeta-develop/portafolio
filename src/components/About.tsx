@@ -147,18 +147,6 @@ const About: React.FC = () => {
                   <p className="text-sm text-foreground/70 mb-1">{t('about.jobCompany1')} • {t('about.jobPeriod1')}</p>
                   <p className="text-sm">{t('about.jobDescription1')}</p>
                 </div>
-                
-                <div className="border-l-2 border-primary/30 pl-4 pb-1">
-                  <h4 className="font-medium">{t('about.jobTitle2')}</h4>
-                  <p className="text-sm text-foreground/70 mb-1">{t('about.jobCompany2')} • {t('about.jobPeriod2')}</p>
-                  <p className="text-sm">{t('about.jobDescription2')}</p>
-                </div>
-                
-                <div className="border-l-2 border-primary/30 pl-4">
-                  <h4 className="font-medium">{t('about.jobTitle3')}</h4>
-                  <p className="text-sm text-foreground/70 mb-1">{t('about.jobCompany3')} • {t('about.jobPeriod3')}</p>
-                  <p className="text-sm">{t('about.jobDescription3')}</p>
-                </div>
               </div>
             </div>
           </div>
