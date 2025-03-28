@@ -69,7 +69,14 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="section-padding">
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="section-padding"
+      style={{
+        background: "linear-gradient(to bottom, #000000, #090718)",
+      }}
+    >
       <div className="container mx-auto">
         <div className="text-center mb-12 animate-on-scroll opacity-0">
           <span className="inline-block py-1 px-3 mb-2 text-sm font-medium bg-primary/10 rounded-full">
