@@ -31,7 +31,7 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="section-padding relative bg-secondary/30">
+    <section id="about" ref={sectionRef} className="section-padding relative bg-secondary/30" >
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
           {/* About Content */}
