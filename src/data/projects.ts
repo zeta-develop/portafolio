@@ -34,7 +34,7 @@ const projects: Project[] = [
     id: 3,
     name: "Nexus Billing",
     description: "Sistema de facturación y gestión de clientes para un proveedor de servicios de hosting.",
-    image: "",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=500&h=300&auto=format&fit=crop&q=80",
     topics: ["Laravel", "Nextjs", "postgreSQL"],
     demo: "https://nexusbill.ronaldtellez.online",
   },

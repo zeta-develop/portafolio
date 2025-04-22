@@ -1,6 +1,8 @@
+
 import React, { useState, useRef, useEffect } from "react";
 import { ExternalLink, Code, Star } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import {
   Card,
   CardContent,
@@ -15,6 +17,7 @@ type ProjectCategory = "all" | "frontend" | "backend" | "fullstack";
 
 const Projects: React.FC = () => {
   const { t } = useLanguage();
+  const { theme } = useTheme();
   const [selectedCategory, setSelectedCategory] =
     useState<ProjectCategory>("all");
   const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
@@ -69,12 +72,16 @@ const Projects: React.FC = () => {
       ref={sectionRef}
       className="section-padding"
       style={{
-        background: "linear-gradient(to bottom, #000000, #090718)",
+        background: theme === 'dark' 
+          ? 'linear-gradient(to bottom, #000000, #090718)'
+          : 'linear-gradient(to bottom, #f8f9fa, #e9ecef)'
       }}
     >
       <div className="container mx-auto">
         <div className="text-center mb-12 animate-on-scroll opacity-0">
-          <span className="inline-block py-1 px-3 mb-2 text-sm font-medium bg-primary/10 rounded-full">
+          <span className={`inline-block py-1 px-3 mb-2 text-sm font-medium rounded-full ${
+            theme === 'dark' ? 'bg-primary/10' : 'bg-primary/20'
+          }`}>
             {t("projects.subtitle")}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -94,7 +101,9 @@ const Projects: React.FC = () => {
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 selectedCategory === category.id
                   ? "bg-primary text-primary-foreground shadow-soft"
-                  : "bg-secondary hover:bg-secondary/80"
+                  : theme === 'dark' 
+                    ? "bg-secondary hover:bg-secondary/80" 
+                    : "bg-secondary/80 hover:bg-secondary"
               }`}
             >
               {category.label}
@@ -114,7 +123,11 @@ const Projects: React.FC = () => {
             filteredProjects.map((project, index) => (
               <Card
                 key={project.id}
-                className="animate-on-scroll opacity-0 group overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300"
+                className={`animate-on-scroll opacity-0 group overflow-hidden transition-all duration-300 ${
+                  theme === 'dark' 
+                    ? 'border-0 shadow-md hover:shadow-xl' 
+                    : 'border border-border/50 shadow-sm hover:shadow-md'
+                }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Project Image with Skeleton Loading */}
@@ -127,7 +140,7 @@ const Projects: React.FC = () => {
                         </div>
                       )}
                       <img
-                        src={`${project.image}?w=500&h=300&auto=format&fit=crop`}
+                        src={`${project.image}?w=500&h=300&auto=format&fit=crop&q=80`}
                         alt={project.name}
                         className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${
                           loadedImages[project.id] ? "block" : "hidden"
@@ -156,7 +169,9 @@ const Projects: React.FC = () => {
                 </CardHeader>
 
                 <CardContent className="pt-2">
-                  <p className="text-sm text-foreground/70 mb-4 line-clamp-3 h-[4.5rem]">
+                  <p className={`text-sm mb-4 line-clamp-3 h-[4.5rem] ${
+                    theme === 'dark' ? 'text-foreground/70' : 'text-foreground/80'
+                  }`}>
                     {project.description || "No description available"}
                   </p>
 
@@ -166,13 +181,17 @@ const Projects: React.FC = () => {
                       {project.topics.slice(0, 3).map((topic) => (
                         <span
                           key={topic}
-                          className="text-xs px-2 py-1 bg-primary/10 rounded-full"
+                          className={`text-xs px-2 py-1 rounded-full ${
+                            theme === 'dark' ? 'bg-primary/10' : 'bg-primary/20'
+                          }`}
                         >
                           {topic}
                         </span>
                       ))}
                       {project.topics.length > 3 && (
-                        <span className="text-xs px-2 py-1 bg-primary/5 rounded-full">
+                        <span className={`text-xs px-2 py-1 rounded-full ${
+                          theme === 'dark' ? 'bg-primary/5' : 'bg-primary/10'
+                        }`}>
                           +{project.topics.length - 3}
                         </span>
                       )}
@@ -186,7 +205,11 @@ const Projects: React.FC = () => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                      className={`flex items-center text-sm font-medium ${
+                        theme === 'dark' 
+                          ? 'text-foreground/80 hover:text-primary' 
+                          : 'text-foreground/70 hover:text-primary'
+                      } transition-colors`}
                     >
                       <Code className="h-4 w-4 mr-1.5" />
                       {t("projects.viewCode")}
@@ -197,7 +220,11 @@ const Projects: React.FC = () => {
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                      className={`flex items-center text-sm font-medium ${
+                        theme === 'dark' 
+                          ? 'text-foreground/80 hover:text-primary' 
+                          : 'text-foreground/70 hover:text-primary'
+                      } transition-colors`}
                     >
                       <ExternalLink className="h-4 w-4 mr-1.5" />
                       {t("projects.viewProject")}
@@ -215,8 +242,11 @@ const Projects: React.FC = () => {
             href="https://github.com/zeta-develop"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 rounded-full bg-secondary text-secondary-foreground 
-                      font-medium transition-colors hover:bg-secondary/80"
+            className={`inline-flex items-center px-6 py-3 rounded-full ${
+              theme === 'dark' 
+                ? 'bg-secondary text-secondary-foreground hover:bg-secondary/80' 
+                : 'bg-secondary/90 text-secondary-foreground hover:bg-secondary'
+            } font-medium transition-colors`}
           >
             <Code className="mr-2 h-5 w-5" />
             {t("projects.viewMore")}

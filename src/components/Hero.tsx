@@ -29,7 +29,14 @@ const Hero: React.FC = () => {
           <div className="relative mb-8">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/60 to-accent/60 blur-lg opacity-70 animate-pulse-soft"></div>
             <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-primary/30 relative z-10">
-              <img alt="Ronald Tellez" src="https://avatars.githubusercontent.com/u/80638821?v=4" className="w-full h-full object-cover" />
+              <img 
+                alt="Ronald Tellez" 
+                src="https://avatars.githubusercontent.com/u/80638821?v=4" 
+                className="w-full h-full object-cover"
+                loading="eager"
+                width="160"
+                height="160" 
+              />
             </div>
           </div>
 
