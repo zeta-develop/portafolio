@@ -12,7 +12,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('dark'); // Default to dark theme
 
   // Load theme preference from localStorage on mount
   useEffect(() => {
@@ -29,13 +29,26 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   // Update document when theme changes
   useEffect(() => {
     const root = window.document.documentElement;
+    
+    // Remove both classes first
     root.classList.remove('light', 'dark');
+    
+    // Add the current theme class
     root.classList.add(theme);
+    
+    // Store in localStorage
     localStorage.setItem('theme', theme);
+    
+    // Log for debugging
+    console.log('Theme changed to:', theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+    setTheme(prevTheme => {
+      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+      console.log('Toggling theme from', prevTheme, 'to', newTheme);
+      return newTheme;
+    });
   };
 
   return (
