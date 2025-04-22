@@ -2,14 +2,22 @@
 import React from 'react';
 import { ArrowRight, Github } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
+  const { theme } = useTheme();
 
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center relative pt-20 pb-32 px-6 md:px-10 lg:px-16" style={{
-      background: 'linear-gradient(to bottom, #000000, #090718)'
-    }}>
+    <section 
+      id="home" 
+      className="min-h-screen flex flex-col justify-center relative pt-20 pb-32 px-6 md:px-10 lg:px-16" 
+      style={{
+        background: theme === 'dark' 
+          ? 'linear-gradient(to bottom, #000000, #090718)'
+          : 'linear-gradient(to bottom, #f8f9fa, #e9ecef)'
+      }}
+    >
       <div className="container mx-auto z-10">
         <div className="flex flex-col items-center justify-center text-center">
           {/* Logo/Initials */}
@@ -26,7 +34,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Name */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 glow-text">
+          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 ${theme === 'dark' ? 'glow-text' : 'text-foreground'}`}>
             {t('hero.greeting')} <br />
             Ronald Adan Tellez Ramos
           </h1>
@@ -54,7 +62,7 @@ const Hero: React.FC = () => {
 
       {/* Background elements */}
       <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute inset-0 bg-grid-white/[0.02]" />
+        <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-grid-white/[0.02]' : 'bg-grid-dark/[0.03]'}`} />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
       </div>

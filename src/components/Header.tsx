@@ -2,11 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
 import ThemeToggle from './ThemeToggle';
 import LanguageSwitch from './LanguageSwitch';
 
 const Header: React.FC = () => {
   const { t } = useLanguage();
+  const { theme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -32,7 +34,9 @@ const Header: React.FC = () => {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'py-3 bg-black/80 dark:bg-black/80 backdrop-blur-md border-b border-white/5' 
+          ? theme === 'dark'
+            ? 'py-3 bg-black/80 backdrop-blur-md border-b border-white/5' 
+            : 'py-3 bg-white/80 backdrop-blur-md border-b border-gray-200'
           : 'py-5 bg-transparent'
       }`}
     >
@@ -86,7 +90,11 @@ const Header: React.FC = () => {
       
       {/* Mobile Menu */}
       <div 
-        className={`fixed inset-0 z-40 bg-black/80 dark:bg-black/80 backdrop-blur-lg transition-transform duration-300 ease-in-out transform md:hidden ${
+        className={`fixed inset-0 z-40 ${
+          theme === 'dark' 
+            ? 'bg-black/80 backdrop-blur-lg' 
+            : 'bg-white/90 backdrop-blur-lg'
+        } transition-transform duration-300 ease-in-out transform md:hidden ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{ top: '60px' }}
