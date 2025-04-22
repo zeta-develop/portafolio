@@ -7,7 +7,7 @@ const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
   // Debug info
-  console.log('Current theme in toggle:', theme);
+  console.log('ThemeToggle rendering with theme:', theme);
 
   return (
     <button
