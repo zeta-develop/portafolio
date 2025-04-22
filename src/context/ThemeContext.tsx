@@ -13,9 +13,17 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark'); // Default to dark theme
+  const [mounted, setMounted] = useState(false);
+
+  // Update state when mounted to prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Load theme preference from localStorage on mount
   useEffect(() => {
+    if (!mounted) return;
+    
     const savedTheme = localStorage.getItem('theme') as Theme | null;
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
@@ -24,10 +32,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     } else if (prefersDark) {
       setTheme('dark');
     }
-  }, []);
+  }, [mounted]);
 
   // Update document when theme changes
   useEffect(() => {
+    if (!mounted) return;
+    
     const root = window.document.documentElement;
     
     // Remove both classes first
@@ -41,7 +51,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     
     // Log for debugging
     console.log('Theme changed to:', theme);
-  }, [theme]);
+  }, [theme, mounted]);
 
   const toggleTheme = () => {
     setTheme(prevTheme => {
@@ -50,6 +60,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       return newTheme;
     });
   };
+
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return <>{children}</>;
+  }
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
