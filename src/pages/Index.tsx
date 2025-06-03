@@ -1,6 +1,5 @@
 
 import React, { useEffect } from 'react';
-import { ThemeProvider } from '@/context/ThemeContext';
 import { LanguageProvider } from '@/context/LanguageContext';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
@@ -22,22 +21,20 @@ const Index = () => {
   }, []);
 
   return (
-    <ThemeProvider>
-      <LanguageProvider>
-        <div className="flex flex-col min-h-screen bg-black">
-          <Header />
-          <main className="flex-grow">
-            <Hero />
-            <Projects />
-            <About />
-            <Specialties />
-            <Skills />
-            <Contact />
-          </main>
-          <Footer />
-        </div>
-      </LanguageProvider>
-    </ThemeProvider>
+    <LanguageProvider>
+      <div className="flex flex-col min-h-screen bg-black">
+        <Header />
+        <main className="flex-grow">
+          <Hero />
+          <Projects />
+          <About />
+          <Specialties />
+          <Skills />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 };
 
