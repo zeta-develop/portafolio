@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
 
 interface Skill {
   name: string;
@@ -13,6 +14,7 @@ interface SoftSkill {
 
 const Skills: React.FC = () => {
   const { t } = useLanguage();
+  const { theme } = useTheme();
   const sectionRef = useRef<HTMLElement>(null);
   
   // Technical skills data
@@ -65,29 +67,37 @@ const Skills: React.FC = () => {
   }, []);
 
   return (
-    <section id="skills" ref={sectionRef} className="section-padding bg-secondary/30">
+    <section 
+      id="skills" 
+      ref={sectionRef} 
+      className={`section-padding transition-colors duration-300 ${
+        theme === 'dark' 
+          ? 'bg-gradient-to-b from-black/80 to-gray-900/50' 
+          : 'bg-gradient-to-b from-white to-gray-50'
+      }`}
+    >
       <div className="container mx-auto">
         <div className="text-center mb-12 animate-on-scroll opacity-0">
-          <span className="inline-block py-1 px-3 mb-2 text-sm font-medium bg-primary/10 rounded-full">
+          <span className="inline-block py-1 px-3 mb-2 text-sm font-medium bg-primary/10 text-primary rounded-full border border-primary/20">
             {t('skills.subtitle')}
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('skills.title')}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">{t('skills.title')}</h2>
           <div className="w-20 h-1 bg-primary rounded-full mx-auto"></div>
         </div>
         
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Technical Skills */}
           <div className="lg:w-1/2 animate-on-scroll opacity-0">
-            <h3 className="text-xl font-semibold mb-6">{t('skills.technical')}</h3>
+            <h3 className="text-xl font-semibold mb-6 text-foreground">{t('skills.technical')}</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {technicalSkills.map((skill, index) => (
                 <div 
                   key={skill.name}
-                  className="skill-item flex items-center p-3 bg-secondary/20 rounded-lg shadow-soft transition-all duration-300 hover:bg-primary/10 hover:scale-105"
+                  className="skill-item flex items-center p-3 bg-card border border-border rounded-lg shadow-soft transition-all duration-300 hover:bg-accent hover:scale-105"
                   style={{ transitionDelay: `${index * 50}ms` }}
                 >
                   <span className="text-2xl mr-3">{skill.icon}</span>
-                  <span className="font-medium">{skill.name}</span>
+                  <span className="font-medium text-card-foreground">{skill.name}</span>
                 </div>
               ))}
             </div>
@@ -95,22 +105,22 @@ const Skills: React.FC = () => {
           
           {/* Soft Skills */}
           <div className="lg:w-1/2">
-            <h3 className="text-xl font-semibold mb-6 animate-on-scroll opacity-0">{t('skills.soft')}</h3>
+            <h3 className="text-xl font-semibold mb-6 animate-on-scroll opacity-0 text-foreground">{t('skills.soft')}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {softSkills.map((skill, index) => (
                 <div 
                   key={skill.name} 
-                  className="skill-item glass glass-dark rounded-2xl p-6 shadow-soft animate-on-scroll opacity-0 text-center transition-all duration-300 hover:bg-primary/10 hover:scale-105"
+                  className="skill-item bg-card border border-border rounded-2xl p-6 shadow-soft animate-on-scroll opacity-0 text-center transition-all duration-300 hover:bg-accent hover:scale-105"
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                  <h4 className="font-medium">{skill.name}</h4>
+                  <h4 className="font-medium text-card-foreground">{skill.name}</h4>
                 </div>
               ))}
             </div>
             
             {/* Skills Summary */}
-            <div className="mt-8 glass glass-dark rounded-2xl p-6 shadow-soft animate-on-scroll opacity-0">
-              <p className="text-foreground/80">
+            <div className="mt-8 bg-card border border-border rounded-2xl p-6 shadow-soft animate-on-scroll opacity-0">
+              <p className="text-muted-foreground">
                 {t('skills.summary')}
               </p>
             </div>

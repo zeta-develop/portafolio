@@ -1,10 +1,12 @@
 
 import React from 'react';
-import { Heart, ArrowUp } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
 
 const Footer: React.FC = () => {
   const { t } = useLanguage();
+  const { theme } = useTheme();
   const currentYear = new Date().getFullYear();
 
   const scrollToTop = () => {
@@ -15,11 +17,15 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="py-8 bg-black border-t border-white/5">
+    <footer className={`py-8 border-t transition-colors duration-300 ${
+      theme === 'dark' 
+        ? 'bg-black border-white/10' 
+        : 'bg-gray-50 border-gray-200'
+    }`}>
       <div className="container mx-auto px-6 md:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <p className="text-sm text-foreground/70">
+            <p className="text-sm text-muted-foreground">
               &copy; {currentYear} Ronald Tellez. {t('footer.rights')}.
             </p>
           </div>
@@ -27,7 +33,7 @@ const Footer: React.FC = () => {
           <button
             onClick={scrollToTop}
             className="mt-4 md:mt-0 p-3 rounded-full bg-primary text-primary-foreground 
-                     transition-transform duration-300 hover:scale-110"
+                     transition-transform duration-300 hover:scale-110 shadow-soft"
             aria-label="Scroll to top"
           >
             <ArrowUp className="h-4 w-4" />
