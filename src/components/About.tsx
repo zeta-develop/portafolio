@@ -31,7 +31,7 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="section-padding relative bg-muted/50" >
+    <section id="about" ref={sectionRef} className="section-padding relative bg-background" >
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
           {/* About Content */}
@@ -105,7 +105,7 @@ const About: React.FC = () => {
           <div className="lg:w-1/2 animate-on-scroll opacity-0">
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl blur-xl opacity-70"></div>
-              <div className="relative bg-card/95 backdrop-blur-md border border-border shadow-soft overflow-hidden rounded-2xl">
+              <div className="relative bg-card backdrop-blur-md border border-border shadow-soft overflow-hidden rounded-2xl">
                 <img 
                   src="https://avatars.githubusercontent.com/u/80638821?v=4&size=720"
                   alt="Ronald Tellez" 
@@ -114,16 +114,16 @@ const About: React.FC = () => {
                 />
                 
                 {/* Floating badges */}
-                <div className="absolute top-4 left-4 bg-card/90 backdrop-blur-md border border-border p-3 rounded-full shadow-soft">
+                <div className="absolute top-4 left-4 bg-card backdrop-blur-md border border-border p-3 rounded-full shadow-soft">
                   <Code className="w-5 h-5 text-primary" />
                 </div>
                 
-                <div className="absolute bottom-4 right-4 bg-card/90 backdrop-blur-md border border-border p-3 rounded-full shadow-soft">
+                <div className="absolute bottom-4 right-4 bg-card backdrop-blur-md border border-border p-3 rounded-full shadow-soft">
                   <Briefcase className="w-5 h-5 text-accent" />
                 </div>
                 
                 {/* Info card */}
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-card/90 backdrop-blur-md border border-border px-6 py-4 rounded-xl shadow-soft-lg">
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-card backdrop-blur-md border border-border px-6 py-4 rounded-xl shadow-soft-lg">
                   <h3 className="font-medium text-center text-foreground">Ronald Tellez</h3>
                   <p className="text-muted-foreground text-sm text-center">{t('hero.title')}</p>
                 </div>
@@ -131,7 +131,7 @@ const About: React.FC = () => {
             </div>
             
             {/* Experience Section */}
-            <div className="mt-12 bg-card/95 backdrop-blur-md border border-border p-6 rounded-xl shadow-soft animate-on-scroll opacity-0">
+            <div className="mt-12 bg-card backdrop-blur-md border border-border p-6 rounded-xl shadow-soft animate-on-scroll opacity-0">
               <div className="flex items-center gap-3 mb-5">
                 <div className="p-2 bg-accent/10 rounded-full">
                   <Rocket className="w-5 h-5 text-accent" />

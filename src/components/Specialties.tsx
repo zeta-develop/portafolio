@@ -25,7 +25,7 @@ const Specialties: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 px-6 md:px-10 lg:px-16 transition-colors duration-300 bg-muted/30">
+    <section className="py-20 px-6 md:px-10 lg:px-16 transition-colors duration-300 bg-background">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 glow-text">
           {t('specialties.title')}
