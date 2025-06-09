@@ -3,6 +3,7 @@ import React from 'react';
 import { ArrowRight, Github } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
+import TypewriterText from '@/components/TypewriterText';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -35,10 +36,13 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Name */}
+          {/* Name with Typewriter Animation */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 glow-text">
-            {t('hero.greeting')} <br />
-            <span className="text-foreground">Ronald Adan Tellez Ramos</span>
+            <TypewriterText 
+              text={`${t('hero.greeting')} Ronald Adan Tellez Ramos`}
+              speed={80}
+              className="text-foreground"
+            />
           </h1>
 
           {/* Professional Description */}
