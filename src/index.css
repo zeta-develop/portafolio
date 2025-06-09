@@ -128,15 +128,15 @@
   }
 
   .specialty-card {
-    @apply border rounded-xl p-6 transition-all duration-300 bg-card text-card-foreground border-border hover:border-primary/30;
+    @apply border rounded-xl p-6 transition-all duration-500 bg-card text-card-foreground border-border hover:border-primary/30;
   }
   
   .specialty-card:hover {
-    @apply shadow-soft-lg transform hover:scale-105;
+    @apply shadow-soft-lg transform;
   }
   
   .specialty-icon {
-    @apply flex items-center justify-center w-12 h-12 rounded-lg mb-4 transition-colors bg-primary/10 text-primary;
+    @apply flex items-center justify-center w-12 h-12 rounded-lg mb-4 transition-all duration-500 bg-primary/10 text-primary;
   }
   
   .glow-text {
@@ -148,14 +148,14 @@
   }
   
   .gradient-button {
-    @apply px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 text-primary-foreground bg-primary hover:bg-primary/90 hover:shadow-soft-lg hover:scale-105;
+    @apply px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 text-primary-foreground bg-primary hover:bg-primary/90 hover:shadow-soft-lg hover:scale-105 group;
   }
   
   .gradient-button:hover {
     background: hsl(var(--primary-hover));
   }
   
-  /* Nuevas utilidades para la paleta */
+  /* Enhanced utility classes */
   .text-secondary {
     color: hsl(var(--text-secondary));
   }
@@ -175,8 +175,94 @@
   .bg-accent-subtle {
     @apply bg-accent/10 text-accent;
   }
+
+  /* Enhanced hover utilities */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-lg;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)];
+  }
+
+  .hover-scale-110 {
+    @apply transition-transform duration-300 hover:scale-110;
+  }
+
+  .hover-rotate-6 {
+    @apply transition-transform duration-300 hover:rotate-6;
+  }
+
+  .hover-bounce {
+    @apply transition-transform duration-300 hover:animate-bounce;
+  }
 }
 
 /* Import Roboto font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap');
+
+/* Enhanced floating animation */
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* New enhanced animations */
+@keyframes wiggle {
+  0%, 7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%, 100% {
+    transform: rotateZ(0);
+  }
+}
+
+.animate-wiggle {
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+/* Enhanced pulse animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  70% {
+    opacity: 0.7;
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
