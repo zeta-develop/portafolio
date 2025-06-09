@@ -113,7 +113,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">{t('contact.location')}</p>
-                    <p className="text-muted-foreground">León, Guanajuato, México</p>
+                    <p className="text-muted-foreground">Leon, Nicaragua</p>
                   </div>
                 </div>
               </div>
