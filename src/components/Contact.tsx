@@ -1,43 +1,45 @@
-
 import React, { useState } from 'react';
 import { Send, MapPin, Mail, Github, Linkedin } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
-
 const Contact: React.FC = () => {
-  const { t } = useLanguage();
-  const { toast } = useToast();
+  const {
+    t
+  } = useLanguage();
+  const {
+    toast
+  } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       toast({
         title: t('contact.success'),
-        description: "Thank you for your message!",
+        description: "Thank you for your message!"
       });
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
       setIsSubmitting(false);
     }, 1000);
   };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-
-  return (
-    <section id="contact" className="section-padding bg-background">
+  return <section id="contact" className="section-padding bg-background">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <span className="inline-block py-1 px-3 mb-2 text-sm font-medium bg-accent/10 text-accent rounded-full border border-accent/20">
@@ -60,65 +62,30 @@ const Contact: React.FC = () => {
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                     {t('contact.name')}
                   </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground"
-                    placeholder="Your name"
-                  />
+                  <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground" placeholder="Your name" />
                 </div>
                 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                     {t('contact.email')}
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground"
-                    placeholder="your.email@example.com"
-                  />
+                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors text-foreground placeholder:text-muted-foreground" placeholder="your.email@example.com" />
                 </div>
                 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                     {t('contact.message')}
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-none text-foreground placeholder:text-muted-foreground"
-                    placeholder="Tell me about your project..."
-                  />
+                  <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={5} className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors resize-none text-foreground placeholder:text-muted-foreground" placeholder="Tell me about your project..." />
                 </div>
                 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium 
+                <button type="submit" disabled={isSubmitting} className="w-full bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium 
                            transition-all duration-300 hover:bg-primary/90 hover:shadow-soft-lg 
-                           disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                  {isSubmitting ? (
-                    <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                  ) : (
-                    <>
+                           disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                  {isSubmitting ? <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" /> : <>
                       <Send className="w-5 h-5" />
                       {t('contact.send')}
-                    </>
-                  )}
+                    </>}
                 </button>
               </form>
             </div>
@@ -136,9 +103,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">Email</p>
-                    <a href="mailto:ronaldadantellez@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                      ronaldadantellez@gmail.com
-                    </a>
+                    <a href="mailto:ronaldadantellez@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">contacto@ronaldtellez.online</a>
                   </div>
                 </div>
                 
@@ -158,18 +123,10 @@ const Contact: React.FC = () => {
             <div>
               <h4 className="text-lg font-semibold mb-4 text-foreground">Social</h4>
               <div className="flex gap-4">
-                <a
-                  href="https://github.com/zeta-develop"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-card border border-border rounded-lg hover:bg-muted transition-all duration-300 hover:scale-105"
-                >
+                <a href="https://github.com/zeta-develop" target="_blank" rel="noopener noreferrer" className="p-3 bg-card border border-border rounded-lg hover:bg-muted transition-all duration-300 hover:scale-105">
                   <Github className="w-6 h-6 text-foreground" />
                 </a>
-                <a
-                  href="mailto:ronaldadantellez@gmail.com"
-                  className="p-3 bg-card border border-border rounded-lg hover:bg-muted transition-all duration-300 hover:scale-105"
-                >
+                <a href="mailto:ronaldadantellez@gmail.com" className="p-3 bg-card border border-border rounded-lg hover:bg-muted transition-all duration-300 hover:scale-105">
                   <Mail className="w-6 h-6 text-foreground" />
                 </a>
               </div>
@@ -189,8 +146,6 @@ const Contact: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Contact;
