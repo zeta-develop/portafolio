@@ -11,11 +11,7 @@ const Hero: React.FC = () => {
   return (
     <section 
       id="home" 
-      className={`min-h-screen flex flex-col justify-center relative pt-20 pb-32 px-6 md:px-10 lg:px-16 transition-colors duration-300 ${
-        theme === 'dark' 
-          ? 'bg-gradient-to-br from-gray-900 via-purple-900/20 to-black' 
-          : 'bg-gradient-to-br from-gray-50 via-blue-50 to-white'
-      }`}
+      className="min-h-screen flex flex-col justify-center relative pt-20 pb-32 px-6 md:px-10 lg:px-16 transition-colors duration-300 bg-background"
     >
       <div className="container mx-auto z-10">
         <div className="flex flex-col items-center justify-center text-center">
@@ -26,7 +22,7 @@ const Hero: React.FC = () => {
 
           {/* Profile Image */}
           <div className="relative mb-8">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/40 to-purple-500/40 blur-lg opacity-70 animate-pulse-soft"></div>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/40 to-accent/40 blur-lg opacity-70 animate-pulse-soft"></div>
             <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-primary/30 relative z-10 shadow-soft-xl">
               <img 
                 alt="Ronald Tellez" 
@@ -61,8 +57,8 @@ const Hero: React.FC = () => {
               href="https://github.com/zeta-develop" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="px-6 py-3 rounded-full bg-secondary text-secondary-foreground border border-border
-                       font-medium transition-all duration-300 flex items-center gap-2 hover:bg-accent hover:scale-105"
+              className="px-6 py-3 rounded-full bg-card text-card-foreground border border-border
+                       font-medium transition-all duration-300 flex items-center gap-2 hover:bg-muted hover:scale-105"
             >
               <Github className="h-5 w-5" />
               GitHub

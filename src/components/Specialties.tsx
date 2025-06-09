@@ -2,11 +2,9 @@
 import React from 'react';
 import { Code, Server, Cpu } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { useTheme } from '@/context/ThemeContext';
 
 const Specialties: React.FC = () => {
   const { t } = useLanguage();
-  const { theme } = useTheme();
   
   const specialties = [
     {
@@ -27,13 +25,7 @@ const Specialties: React.FC = () => {
   ];
 
   return (
-    <section 
-      className={`py-20 px-6 md:px-10 lg:px-16 transition-colors duration-300 ${
-        theme === 'dark' 
-          ? 'bg-gradient-to-b from-gray-900/50 to-black/80' 
-          : 'bg-gradient-to-b from-gray-50 to-white'
-      }`}
-    >
+    <section className="py-20 px-6 md:px-10 lg:px-16 transition-colors duration-300 bg-muted/30">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 glow-text">
           {t('specialties.title')}

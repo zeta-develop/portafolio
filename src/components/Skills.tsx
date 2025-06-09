@@ -1,7 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
-import { useTheme } from '@/context/ThemeContext';
 
 interface Skill {
   name: string;
@@ -14,7 +13,6 @@ interface SoftSkill {
 
 const Skills: React.FC = () => {
   const { t } = useLanguage();
-  const { theme } = useTheme();
   const sectionRef = useRef<HTMLElement>(null);
   
   // Technical skills data
@@ -70,15 +68,11 @@ const Skills: React.FC = () => {
     <section 
       id="skills" 
       ref={sectionRef} 
-      className={`section-padding transition-colors duration-300 ${
-        theme === 'dark' 
-          ? 'bg-gradient-to-b from-black/80 to-gray-900/50' 
-          : 'bg-gradient-to-b from-white to-gray-50'
-      }`}
+      className="section-padding transition-colors duration-300 bg-background"
     >
       <div className="container mx-auto">
         <div className="text-center mb-12 animate-on-scroll opacity-0">
-          <span className="inline-block py-1 px-3 mb-2 text-sm font-medium bg-primary/10 text-primary rounded-full border border-primary/20">
+          <span className="inline-block py-1 px-3 mb-2 text-sm font-medium bg-accent-subtle rounded-full border border-accent/20">
             {t('skills.subtitle')}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">{t('skills.title')}</h2>
@@ -93,7 +87,7 @@ const Skills: React.FC = () => {
               {technicalSkills.map((skill, index) => (
                 <div 
                   key={skill.name}
-                  className="skill-item flex items-center p-3 bg-card border border-border rounded-lg shadow-soft transition-all duration-300 hover:bg-accent hover:scale-105"
+                  className="skill-item flex items-center p-3 bg-card border border-border rounded-lg shadow-soft transition-all duration-300 hover:bg-muted hover:scale-105"
                   style={{ transitionDelay: `${index * 50}ms` }}
                 >
                   <span className="text-2xl mr-3">{skill.icon}</span>
@@ -110,7 +104,7 @@ const Skills: React.FC = () => {
               {softSkills.map((skill, index) => (
                 <div 
                   key={skill.name} 
-                  className="skill-item bg-card border border-border rounded-2xl p-6 shadow-soft animate-on-scroll opacity-0 text-center transition-all duration-300 hover:bg-accent hover:scale-105"
+                  className="skill-item bg-card border border-border rounded-2xl p-6 shadow-soft animate-on-scroll opacity-0 text-center transition-all duration-300 hover:bg-muted hover:scale-105"
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <h4 className="font-medium text-card-foreground">{skill.name}</h4>
