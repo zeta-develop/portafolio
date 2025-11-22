@@ -100,24 +100,21 @@ const Projects: React.FC = () => {
     <section
       id="projects"
       ref={sectionRef}
-      className={`section-padding transition-colors duration-300 ${
-        theme === 'dark' 
+      className={`section-padding transition-colors duration-300 ${theme === 'dark'
           ? 'bg-gradient-to-b from-black via-gray-900 to-black'
           : 'bg-gradient-to-b from-gray-50 via-white to-gray-50'
-      }`}
+        }`}
     >
       <div className="container mx-auto">
         <div className="text-center mb-12 animate-on-scroll opacity-0">
-          <span className={`inline-block py-2 px-4 mb-4 text-sm font-medium rounded-full transition-colors ${
-            theme === 'dark' 
-              ? 'bg-primary/10 text-primary border border-primary/20' 
+          <span className={`inline-block py-2 px-4 mb-4 text-sm font-medium rounded-full transition-colors ${theme === 'dark'
+              ? 'bg-primary/10 text-primary border border-primary/20'
               : 'bg-primary/10 text-primary border border-primary/30'
-          }`}>
+            }`}>
             {t("projects.subtitle")}
           </span>
-          <h2 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors ${
-            theme === 'dark' ? 'text-white' : 'text-gray-900'
-          }`}>
+          <h2 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors ${theme === 'dark' ? 'text-white' : 'text-gray-900'
+            }`}>
             {t("projects.title")}
           </h2>
           <div className="w-20 h-1 bg-primary rounded-full mx-auto"></div>
@@ -129,13 +126,12 @@ const Projects: React.FC = () => {
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id as ProjectCategory)}
-              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 ${
-                selectedCategory === category.id
+              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 ${selectedCategory === category.id
                   ? "bg-primary text-primary-foreground shadow-lg scale-105"
-                  : theme === 'dark' 
-                    ? "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white border border-gray-700" 
+                  : theme === 'dark'
+                    ? "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white border border-gray-700"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-900 border border-gray-200"
-              }`}
+                }`}
             >
               {category.label}
             </button>
@@ -146,9 +142,8 @@ const Projects: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.length === 0 ? (
             <div className="col-span-full text-center py-20">
-              <p className={`text-lg ${
-                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-              }`}>
+              <p className={`text-lg ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                }`}>
                 No projects found in this category
               </p>
             </div>
@@ -156,17 +151,15 @@ const Projects: React.FC = () => {
             filteredProjects.map((project, index) => (
               <Card
                 key={project.id}
-                className={`animate-on-scroll opacity-0 group overflow-hidden transition-all duration-300 hover:scale-105 ${
-                  theme === 'dark' 
-                    ? 'bg-gray-900/50 border-gray-800 hover:border-primary/50 shadow-lg hover:shadow-xl' 
+                className={`animate-on-scroll opacity-0 group overflow-hidden transition-all duration-300 hover:scale-105 ${theme === 'dark'
+                    ? 'bg-gray-900/50 border-gray-800 hover:border-primary/50 shadow-lg hover:shadow-xl'
                     : 'bg-white border-gray-200 hover:border-primary/30 shadow-sm hover:shadow-lg'
-                }`}
+                  }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Project Image with improved loading */}
-                <div className={`w-full h-48 overflow-hidden ${
-                  theme === 'dark' ? 'bg-gray-800' : 'bg-gray-100'
-                }`}>
+                <div className={`w-full h-48 overflow-hidden ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-100'
+                  }`}>
                   {project.image && !imageErrors[project.id] ? (
                     <>
                       {!loadedImages[project.id] && (
@@ -177,18 +170,16 @@ const Projects: React.FC = () => {
                       <img
                         src={project.image}
                         alt={project.name}
-                        className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-110 ${
-                          loadedImages[project.id] ? "opacity-100" : "opacity-0"
-                        }`}
+                        className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-110 ${loadedImages[project.id] ? "opacity-100" : "opacity-0"
+                          }`}
                         onLoad={() => handleImageLoad(project.id)}
                         onError={() => handleImageError(project.id)}
-                        loading="eager"
+                        loading="lazy"
                       />
                     </>
                   ) : (
-                    <div className={`w-full h-full flex items-center justify-center ${
-                      theme === 'dark' ? 'bg-gray-800 text-gray-600' : 'bg-gray-100 text-gray-400'
-                    }`}>
+                    <div className={`w-full h-full flex items-center justify-center ${theme === 'dark' ? 'bg-gray-800 text-gray-600' : 'bg-gray-100 text-gray-400'
+                      }`}>
                       <Code className="w-12 h-12" />
                     </div>
                   )}
@@ -196,9 +187,8 @@ const Projects: React.FC = () => {
 
                 <CardHeader className="pb-3">
                   <div className="flex justify-between items-start">
-                    <CardTitle className={`text-lg font-semibold line-clamp-1 mb-0 transition-colors ${
-                      theme === 'dark' ? 'text-white' : 'text-gray-900'
-                    }`}>
+                    <CardTitle className={`text-lg font-semibold line-clamp-1 mb-0 transition-colors ${theme === 'dark' ? 'text-white' : 'text-gray-900'
+                      }`}>
                       {project.name}
                     </CardTitle>
 
@@ -213,9 +203,8 @@ const Projects: React.FC = () => {
                 </CardHeader>
 
                 <CardContent className="pt-0">
-                  <p className={`text-sm mb-4 line-clamp-3 h-[4.5rem] transition-colors ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                  }`}>
+                  <p className={`text-sm mb-4 line-clamp-3 h-[4.5rem] transition-colors ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                    }`}>
                     {project.description || "No description available"}
                   </p>
 
@@ -225,21 +214,19 @@ const Projects: React.FC = () => {
                       {project.topics.slice(0, 3).map((topic) => (
                         <span
                           key={topic}
-                          className={`text-xs px-3 py-1 rounded-full font-medium transition-colors ${
-                            theme === 'dark' 
-                              ? 'bg-primary/20 text-primary border border-primary/30' 
+                          className={`text-xs px-3 py-1 rounded-full font-medium transition-colors ${theme === 'dark'
+                              ? 'bg-primary/20 text-primary border border-primary/30'
                               : 'bg-primary/10 text-primary border border-primary/20'
-                          }`}
+                            }`}
                         >
                           {topic}
                         </span>
                       ))}
                       {project.topics.length > 3 && (
-                        <span className={`text-xs px-3 py-1 rounded-full font-medium transition-colors ${
-                          theme === 'dark' 
-                            ? 'bg-gray-700 text-gray-300 border border-gray-600' 
+                        <span className={`text-xs px-3 py-1 rounded-full font-medium transition-colors ${theme === 'dark'
+                            ? 'bg-gray-700 text-gray-300 border border-gray-600'
                             : 'bg-gray-100 text-gray-600 border border-gray-200'
-                        }`}>
+                          }`}>
                           +{project.topics.length - 3}
                         </span>
                       )}
@@ -253,11 +240,10 @@ const Projects: React.FC = () => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex items-center text-sm font-medium transition-colors ${
-                        theme === 'dark' 
-                          ? 'text-gray-400 hover:text-primary' 
+                      className={`flex items-center text-sm font-medium transition-colors ${theme === 'dark'
+                          ? 'text-gray-400 hover:text-primary'
                           : 'text-gray-600 hover:text-primary'
-                      }`}
+                        }`}
                     >
                       <Code className="h-4 w-4 mr-1.5" />
                       {t("projects.viewCode")}
@@ -268,11 +254,10 @@ const Projects: React.FC = () => {
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex items-center text-sm font-medium transition-colors ${
-                        theme === 'dark' 
-                          ? 'text-gray-400 hover:text-primary' 
+                      className={`flex items-center text-sm font-medium transition-colors ${theme === 'dark'
+                          ? 'text-gray-400 hover:text-primary'
                           : 'text-gray-600 hover:text-primary'
-                      }`}
+                        }`}
                     >
                       <ExternalLink className="h-4 w-4 mr-1.5" />
                       {t("projects.viewProject")}
@@ -290,11 +275,10 @@ const Projects: React.FC = () => {
             href="https://github.com/zeta-develop"
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-flex items-center px-8 py-4 rounded-full font-medium transition-all duration-200 hover:scale-105 ${
-              theme === 'dark' 
-                ? 'bg-gray-800 text-white hover:bg-gray-700 border border-gray-700' 
+            className={`inline-flex items-center px-8 py-4 rounded-full font-medium transition-all duration-200 hover:scale-105 ${theme === 'dark'
+                ? 'bg-gray-800 text-white hover:bg-gray-700 border border-gray-700'
                 : 'bg-gray-100 text-gray-900 hover:bg-gray-200 border border-gray-200'
-            }`}
+              }`}
           >
             <Code className="mr-2 h-5 w-5" />
             {t("projects.viewMore")}

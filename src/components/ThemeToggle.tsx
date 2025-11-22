@@ -6,9 +6,6 @@ import { useTheme } from '@/context/ThemeContext';
 const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
-  // Debug info
-  console.log('ThemeToggle rendering with theme:', theme);
-
   return (
     <button
       onClick={toggleTheme}
@@ -17,14 +14,12 @@ const ThemeToggle: React.FC = () => {
     >
       <div className="relative w-6 h-6 overflow-hidden">
         <Sun
-          className={`w-full h-full absolute top-0 left-0 transition-transform duration-500 ease-in-out ${
-            theme === 'dark' ? 'rotate-[-100deg] scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'
-          }`}
+          className={`w-full h-full absolute top-0 left-0 transition-transform duration-500 ease-in-out ${theme === 'dark' ? 'rotate-[-100deg] scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'
+            }`}
         />
         <Moon
-          className={`w-full h-full absolute top-0 left-0 transition-transform duration-500 ease-in-out ${
-            theme === 'dark' ? 'rotate-0 scale-100 opacity-100' : 'rotate-[100deg] scale-0 opacity-0'
-          }`}
+          className={`w-full h-full absolute top-0 left-0 transition-transform duration-500 ease-in-out ${theme === 'dark' ? 'rotate-0 scale-100 opacity-100' : 'rotate-[100deg] scale-0 opacity-0'
+            }`}
         />
       </div>
     </button>

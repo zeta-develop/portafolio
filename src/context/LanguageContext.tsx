@@ -26,7 +26,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language') as Language | null;
     const browserLanguage = navigator.language.split('-')[0];
-    
+
     if (savedLanguage) {
       setLanguage(savedLanguage as Language);
     } else if (browserLanguage === 'es') {
@@ -48,17 +48,19 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   // Translation function
   const t = (key: string): string => {
     const keys = key.split('.');
-    let value: any = translations[language];
-    
+    let value: Record<string, unknown> | string = translations[language];
+
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
-        value = value[k];
+        value = value[k] as Record<string, unknown> | string;
       } else {
-        console.warn(`Translation key not found: ${key}`);
+        if (process.env.NODE_ENV === 'development') {
+          console.warn(`Translation key not found: ${key}`);
+        }
         return key;
       }
     }
-    
+
     return value as string;
   };
 
