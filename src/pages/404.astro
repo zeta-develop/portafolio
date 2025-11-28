@@ -1,0 +1,8 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { NotFoundWrapper } from "../components/NotFoundWrapper";
+---
+
+<Layout title="404 - Page Not Found">
+  <NotFoundWrapper client:only="react" />
+</Layout>
