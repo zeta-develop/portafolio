@@ -1,0 +1,111 @@
+---
+import "../index.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content="Ronald Tellez | Full Stack Developer Portfolio" />
+    <meta
+      name="description"
+      content="Full Stack Developer specializing in modern web technologies. Explore my portfolio featuring React, TypeScript, Node.js projects and innovative web solutions."
+    />
+    <meta
+      name="keywords"
+      content="Ronald Tellez, Full Stack Developer, Web Developer, React, TypeScript, Node.js, Portfolio, Nicaragua, Software Engineer"
+    />
+    <meta name="author" content="Ronald Tellez" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ronaldtellez.online/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ronaldtellez.online/" />
+    <meta property="og:title" content="Ronald Tellez | Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="Explore my web development portfolio featuring my latest projects and skills in React, TypeScript, and modern web technologies."
+    />
+    <meta property="og:image" content="https://ronaldtellez.online/og-image.png" />
+    <meta property="og:site_name" content="Ronald Tellez Portfolio" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ronaldtellez.online/" />
+    <meta property="twitter:title" content="Ronald Tellez | Full Stack Developer" />
+    <meta
+      property="twitter:description"
+      content="Explore my web development portfolio featuring my latest projects and skills in React, TypeScript, and modern web technologies."
+    />
+    <meta property="twitter:image" content="https://ronaldtellez.online/og-image.png" />
+
+    <!-- Resource Hints -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Optimized Font Loading -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+  </head>
+
+  <body>
+    <slot />
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ronald Adan Tellez Ramos",
+        "alternateName": "Ronald Tellez",
+        "url": "https://ronaldtellez.online",
+        "image": "https://avatars.githubusercontent.com/u/80638821?v=4",
+        "sameAs": ["https://github.com/zeta-develop"],
+        "jobTitle": "Full Stack Developer",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Freelance"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Leon",
+          "addressCountry": "Nicaragua"
+        },
+        "email": "mailto:ronaldadantellez@gmail.com"
+      }
+    </script>
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" is:inline></script>
+  </body>
+</html>
