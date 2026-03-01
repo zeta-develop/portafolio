@@ -7,7 +7,7 @@
 
 > Portafolio de Desarrollador Full Stack - Mostrando proyectos y habilidades de desarrollo web moderno
 
-🌐 **Sitio en Vivo**: [ronaldtellez.online](https://ronaldtellez.online)
+🌐 **Sitio en Vivo**: [ronaldtellez.dev](https://ronaldtellez.dev)
 
 ## 📋 Acerca de
 
@@ -146,7 +146,7 @@ Este proyecto está bajo la licencia [MIT](LICENSE).
 
 **Ronald Adan Tellez Ramos**
 
-- Sitio Web: [ronaldtellez.online](https://ronaldtellez.online)
+- Sitio Web: [ronaldtellez.online](https://ronaldtellez.dev)
 - GitHub: [@zeta-develop](https://github.com/zeta-develop)
 - Email: adantellezr@gmail.com
 - Ubicación: León, Nicaragua
