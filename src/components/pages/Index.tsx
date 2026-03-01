@@ -1,5 +1,4 @@
-
-import React, { useEffect } from 'react';
+import React from 'react';
 import { LanguageProvider } from '@/context/LanguageContext';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
@@ -11,15 +10,6 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 const Index = () => {
-  // Set page title and metadata
-  useEffect(() => {
-    document.title = 'Ronald Tellez | Portfolio';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Full Stack Developer Portfolio - Ronald Tellez');
-    }
-  }, []);
-
   return (
     <LanguageProvider>
       <div className="flex flex-col min-h-screen bg-black">
