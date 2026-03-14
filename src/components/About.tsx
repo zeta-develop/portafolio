@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Code, Briefcase, Github, GraduationCap, Award, Rocket } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { profile } from '@/data/profile';
 
 const About: React.FC = () => {
   const { t } = useLanguage();
@@ -97,7 +98,7 @@ const About: React.FC = () => {
             </div>
             
             <div className="mt-8 animate-on-scroll opacity-0">
-              <a href="https://github.com/zeta-develop" target="_blank" rel="noopener noreferrer" 
+              <a href={profile.github} target="_blank" rel="noopener noreferrer" 
                  className="inline-flex items-center px-6 py-3 rounded-full bg-primary text-primary-foreground 
                           font-medium shadow-soft transition-all duration-300 hover:bg-primary/90 hover:shadow-soft-lg 
                           hover:translate-y-[-2px] hover:scale-105 group">

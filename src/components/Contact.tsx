@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Send, MapPin, Mail, Github, Star } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
+import { profile } from '@/data/profile';
 
 const Contact: React.FC = () => {
   const { t } = useLanguage();
@@ -141,7 +142,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-medium text-foreground group-hover:text-primary transition-colors duration-300">Email</p>
-                    <a href="mailto:ronaldadantellez@gmail.com" className="text-muted-foreground hover:text-primary transition-colors duration-300">contacto@ronaldtellez.online</a>
+                    <a href={`mailto:${profile.email}`} className="text-muted-foreground hover:text-primary transition-colors duration-300">{profile.email}</a>
                   </div>
                 </div>
                 
@@ -151,7 +152,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-medium text-foreground group-hover:text-accent transition-colors duration-300">{t('contact.location')}</p>
-                    <p className="text-muted-foreground">Leon, Nicaragua</p>
+                    <p className="text-muted-foreground">{profile.location}</p>
                   </div>
                 </div>
               </div>
@@ -161,11 +162,11 @@ const Contact: React.FC = () => {
             <div>
               <h4 className="text-lg font-semibold mb-4 text-foreground hover:text-primary transition-colors duration-300">Social</h4>
               <div className="flex gap-4">
-                <a href="https://github.com/zeta-develop" target="_blank" rel="noopener noreferrer" 
+                <a href={profile.github} target="_blank" rel="noopener noreferrer" 
                    className="p-3 bg-card border border-border rounded-lg hover:bg-muted transition-all duration-300 hover:scale-110 hover:rotate-6 hover:shadow-lg group">
                   <Github className="w-6 h-6 text-foreground group-hover:text-primary transition-colors duration-300" />
                 </a>
-                <a href="mailto:ronaldadantellez@gmail.com" 
+                <a href={`mailto:${profile.email}`} 
                    className="p-3 bg-card border border-border rounded-lg hover:bg-muted transition-all duration-300 hover:scale-110 hover:rotate-6 hover:shadow-lg group">
                   <Mail className="w-6 h-6 text-foreground group-hover:text-accent transition-colors duration-300" />
                 </a>
