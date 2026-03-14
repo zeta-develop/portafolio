@@ -52,6 +52,9 @@ const translations = {
     featured: 'Featured',
     filter: {
       all: 'All',
+      frontend: 'Frontend',
+      backend: 'Backend',
+      fullstack: 'Full Stack',
     },
   },
   skills: {

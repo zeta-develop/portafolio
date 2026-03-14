@@ -91,11 +91,16 @@ const Projects: React.FC = () => {
   // Filter projects based on selected category
   const filteredProjects = projects.filter((project) => {
     if (selectedCategory === "all") return true;
-    return project.topics.includes(selectedCategory);
+    return project.category === selectedCategory;
   });
 
   // Project filter categories
-  const categories = [{ id: "all", label: t("projects.filter.all") }];
+  const categories: { id: ProjectCategory; label: string }[] = [
+    { id: "all", label: t("projects.filter.all") },
+    { id: "frontend", label: t("projects.filter.frontend") },
+    { id: "backend", label: t("projects.filter.backend") },
+    { id: "fullstack", label: t("projects.filter.fullstack") },
+  ];
 
   return (
     <section
