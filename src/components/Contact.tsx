@@ -22,7 +22,7 @@ const Contact: React.FC = () => {
     setTimeout(() => {
       toast({
         title: t('contact.success'),
-        description: "Thank you for your message!"
+        description: t('contact.toastDescription')
       });
       setFormData({
         name: '',
@@ -72,7 +72,7 @@ const Contact: React.FC = () => {
                     onChange={handleChange} 
                     required 
                     className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300 text-foreground placeholder:text-muted-foreground hover:border-primary/50 hover:scale-102" 
-                    placeholder="Your name" 
+                    placeholder={t('contact.placeholders.name')} 
                   />
                 </div>
                 
@@ -88,7 +88,7 @@ const Contact: React.FC = () => {
                     onChange={handleChange} 
                     required 
                     className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300 text-foreground placeholder:text-muted-foreground hover:border-primary/50 hover:scale-102" 
-                    placeholder="your.email@example.com" 
+                    placeholder={t('contact.placeholders.email')} 
                   />
                 </div>
                 
@@ -104,7 +104,7 @@ const Contact: React.FC = () => {
                     required 
                     rows={5} 
                     className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300 resize-none text-foreground placeholder:text-muted-foreground hover:border-primary/50 hover:scale-102" 
-                    placeholder="Tell me about your project..." 
+                    placeholder={t('contact.placeholders.message')} 
                   />
                 </div>
                 
@@ -159,7 +159,7 @@ const Contact: React.FC = () => {
 
             {/* Social Links */}
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-foreground hover:text-primary transition-colors duration-300">Social</h4>
+              <h4 className="text-lg font-semibold mb-4 text-foreground hover:text-primary transition-colors duration-300">{t('contact.social')}</h4>
               <div className="flex gap-4">
                 <a href="https://github.com/zeta-develop" target="_blank" rel="noopener noreferrer" 
                    className="p-3 bg-card border border-border rounded-lg hover:bg-muted transition-all duration-300 hover:scale-110 hover:rotate-6 hover:shadow-lg group">
@@ -174,13 +174,13 @@ const Contact: React.FC = () => {
 
             {/* Quick Info Card */}
             <div className="bg-card/95 backdrop-blur-md border border-border p-6 rounded-xl shadow-soft hover:shadow-soft-lg hover:scale-105 transition-all duration-300 group">
-              <h4 className="text-lg font-semibold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">Quick Response</h4>
+              <h4 className="text-lg font-semibold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">{t('contact.quickResponse.title')}</h4>
               <p className="text-muted-foreground text-sm mb-4 group-hover:text-foreground transition-colors duration-300">
-                I usually respond within 24 hours. Let's discuss your project!
+                {t('contact.quickResponse.description')}
               </p>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
-                <span className="text-sm text-muted-foreground">Available for new projects</span>
+                <span className="text-sm text-muted-foreground">{t('contact.quickResponse.availability')}</span>
                 <Star className="w-4 h-4 text-accent ml-2 group-hover:animate-spin" />
               </div>
             </div>
