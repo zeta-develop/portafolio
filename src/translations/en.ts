@@ -27,7 +27,7 @@ const translations = {
     jobCompany1: 'Yazaki NIC',
     jobPeriod1: '2022 - Present',
     jobDescription1: 'Responsible for coordinating and supervising the maintenance team, as well as implementing improvements in production processes.',
-    degree1: 'Information Engineering with emphasis on web development and digital marketing (1st YEAR)',
+    degree1: 'Information Engineering with emphasis on web development and digital marketing (2nd YEAR)',
     school1: 'UNAM - LEON',
     degree2: 'General Technician in Basic Electronics (completed)',
     school2: 'Instituto Politecnico LaSalle',
