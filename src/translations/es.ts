@@ -48,6 +48,9 @@ const translations = {
     viewProject: 'Ver Proyecto',
     viewCode: 'Ver Código',
     viewMore: 'Ver Más Proyectos',
+    emptyCategory: 'No se encontraron proyectos en esta categoría',
+    noDescription: 'No hay descripción disponible',
+    featured: 'Destacado',
     filter: {
       all: 'Todos',
     },
@@ -72,6 +75,18 @@ const translations = {
     connectText: '¡Contáctame para colaboraciones, preguntas o simplemente para saludar!',
     location: 'Ubicación',
     connectWithMe: 'Conéctate conmigo',
+    social: 'Social',
+    toastDescription: '¡Gracias por tu mensaje!',
+    placeholders: {
+      name: 'Tu nombre',
+      email: 'tu.correo@ejemplo.com',
+      message: 'Cuéntame sobre tu proyecto...',
+    },
+    quickResponse: {
+      title: 'Respuesta rápida',
+      description: 'Normalmente respondo en menos de 24 horas. ¡Hablemos de tu proyecto!',
+      availability: 'Disponible para nuevos proyectos',
+    },
   },
   footer: {
     rights: 'Todos los derechos reservados',

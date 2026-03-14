@@ -144,7 +144,7 @@ const Projects: React.FC = () => {
             <div className="col-span-full text-center py-20">
               <p className={`text-lg ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
                 }`}>
-                No projects found in this category
+                {t('projects.emptyCategory')}
               </p>
             </div>
           ) : (
@@ -196,7 +196,7 @@ const Projects: React.FC = () => {
                     {project.featured && (
                       <div className="flex items-center text-yellow-500">
                         <Star className="h-4 w-4 fill-current mr-1" />
-                        <span className="text-xs font-medium">Featured</span>
+                        <span className="text-xs font-medium">{t('projects.featured')}</span>
                       </div>
                     )}
                   </div>
@@ -205,7 +205,7 @@ const Projects: React.FC = () => {
                 <CardContent className="pt-0">
                   <p className={`text-sm mb-4 line-clamp-3 h-[4.5rem] transition-colors ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
                     }`}>
-                    {project.description || "No description available"}
+                    {project.description || t('projects.noDescription')}
                   </p>
 
                   {/* Project Topics */}
