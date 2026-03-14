@@ -14,7 +14,7 @@ const projects: Project[] = [
   {
     id: 1,
     name: "Eshop - Admin",
-    description: "Eshop es un SaaS de comercio electronico e inventario multi-tenant diseñada para permitir que multiples negocios gestionen sus tiendas desde un sistema centralizado mientras sus datos se encuentran totalmente aislados",
+    description: "Eshop es una plataforma SaaS de comercio electrónico e inventario multi-tenant, diseñada para que múltiples negocios gestionen sus tiendas desde un sistema centralizado, con datos completamente aislados y seguros para cada cliente.",
     image: "/projects/Eshop.webp",
     topics: ["Nextjs", "SupaBase", "api"],
     featured: true,
