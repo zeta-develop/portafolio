@@ -1,77 +1,75 @@
 import React from 'react';
-import { ArrowRight, Github } from 'lucide-react';
+import { ArrowRight, Download, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { useTheme } from '@/context/ThemeContext';
 import TypewriterText from '@/components/TypewriterText';
-import { profile } from '@/data/profile';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
-  const { theme } = useTheme();
 
   return (
-    <section
-      id="home"
-      className="min-h-screen flex flex-col justify-center relative pt-20 pb-32 px-6 md:px-10 lg:px-16 transition-colors duration-300 bg-background overflow-hidden"
-    >
-      <div className="container mx-auto z-10 animate-fade-in">
-        <div className="flex flex-col items-center justify-center text-center">
-          <div className="mb-8 text-2xl font-bold text-primary">R.A.T.R.</div>
+    <section id="home" className="relative pt-36 pb-20 px-6 md:px-10 lg:px-16 overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-24 left-1/2 -translate-x-1/2 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute bottom-0 right-10 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
+      </div>
 
-          <div className="relative mb-8">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/40 to-accent/40 blur-lg opacity-70" />
-            <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-primary/30 relative z-10 shadow-soft-xl transition-colors duration-300 hover:border-primary/50 hover:shadow-2xl">
-              <img
-                alt="Ronald Tellez"
-                src="https://avatars.githubusercontent.com/u/80638821?v=4"
-                className="w-full h-full object-cover"
-                loading="eager"
-                width="160"
-                height="160"
-              />
-            </div>
-          </div>
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
+        <div>
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm mb-5">
+            <Sparkles className="size-4" /> Diseñado para causar impacto
+          </span>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 glow-text">
-            <TypewriterText
-              text={`${t('hero.greeting')} Ronald Adan Tellez Ramos`}
-              speed={80}
-              className="text-foreground"
-            />
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight mb-5">
+            <TypewriterText text={`${t('hero.greeting')} Ronald Adan Tellez Ramos`} speed={80} className="text-foreground" />
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10">
-            {t('hero.title')} - {t('hero.subtitle')}
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-8">
+            {t('hero.title')} · {t('hero.subtitle')}
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap gap-3">
             <a href="#projects" className="gradient-button">
               {t('hero.cta')}
-              <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight className="size-5" />
             </a>
-
             <a
               href="https://github.com/zeta-develop"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded-full bg-card text-card-foreground border border-border
-                       font-medium transition-colors duration-300 flex items-center gap-2 hover:bg-muted hover:shadow-lg hover:border-primary/30"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border bg-card text-card-foreground hover:bg-muted transition-colors"
             >
-              <Github className="h-5 w-5" />
-              GitHub
+              <Download className="size-5" /> Ver código
             </a>
           </div>
         </div>
-      </div>
 
-      <div className="absolute inset-0 z-0 opacity-30">
-        <div
-          className={`absolute inset-0 ${
-            theme === 'dark' ? 'bg-grid-white/[0.02]' : 'bg-grid-dark/[0.02]'
-          } animate-fade-in`}
-        />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        <div className="relative">
+          <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 blur-2xl" />
+          <div className="relative rounded-3xl border border-border bg-card/85 backdrop-blur-xl p-6 shadow-soft-lg">
+            <img
+              alt="Ronald Tellez"
+              src="https://avatars.githubusercontent.com/u/80638821?v=4&size=720"
+              className="w-full rounded-2xl object-cover aspect-square"
+              loading="eager"
+              width="480"
+              height="480"
+            />
+            <div className="mt-5 grid grid-cols-3 gap-3 text-center">
+              <div className="rounded-xl bg-muted p-3">
+                <p className="text-2xl font-bold text-primary">3+</p>
+                <p className="text-xs text-muted-foreground">Proyectos</p>
+              </div>
+              <div className="rounded-xl bg-muted p-3">
+                <p className="text-2xl font-bold text-primary">1+</p>
+                <p className="text-xs text-muted-foreground">Años</p>
+              </div>
+              <div className="rounded-xl bg-muted p-3">
+                <p className="text-2xl font-bold text-primary">100%</p>
+                <p className="text-xs text-muted-foreground">Pasión</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
