@@ -166,15 +166,15 @@
   }
 
   .specialty-card {
-    @apply border rounded-xl p-6 transition-all duration-500 bg-card text-card-foreground border-border hover:border-primary/30;
+    @apply border rounded-xl p-6 transition-colors duration-300 bg-card text-card-foreground border-border hover:border-primary/30;
   }
 
   .specialty-card:hover {
-    @apply shadow-soft-lg transform;
+    @apply shadow-soft-lg;
   }
 
   .specialty-icon {
-    @apply flex items-center justify-center w-12 h-12 rounded-lg mb-4 transition-all duration-500 bg-primary/10 text-primary;
+    @apply flex items-center justify-center w-12 h-12 rounded-lg mb-4 transition-colors duration-300 bg-primary/10 text-primary;
   }
 
   .glow-text {
@@ -186,7 +186,7 @@
   }
 
   .gradient-button {
-    @apply px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 text-primary-foreground bg-primary hover:bg-primary/90 hover:shadow-soft-lg hover:scale-105;
+    @apply px-6 py-3 rounded-full font-medium transition-colors duration-300 flex items-center gap-2 text-primary-foreground bg-primary hover:bg-primary/90 hover:shadow-soft-lg;
   }
 
   .gradient-button:hover {
@@ -216,7 +216,7 @@
 
   /* Enhanced hover utilities */
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-lg;
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
   }
 
   .hover-glow {
@@ -233,6 +233,20 @@
 
   .hover-bounce {
     @apply transition-transform duration-300 hover:animate-bounce;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
