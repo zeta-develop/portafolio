@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Send, MapPin, Mail, Github, Star } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
+import { profile } from '@/data/profile';
 
 const Contact: React.FC = () => {
   const { t } = useLanguage();
@@ -146,7 +147,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-medium text-foreground group-hover:text-accent transition-colors duration-300">{t('contact.location')}</p>
-                    <p className="text-muted-foreground">Leon, Nicaragua</p>
+                    <p className="text-muted-foreground">{profile.location}</p>
                   </div>
                 </div>
               </div>
@@ -175,7 +176,7 @@ const Contact: React.FC = () => {
             <div className="bg-card/95 backdrop-blur-md border border-border p-6 rounded-xl shadow-soft hover:shadow-soft-lg transition-shadow duration-300 group">
               <h4 className="text-lg font-semibold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">Quick Response</h4>
               <p className="text-muted-foreground text-sm mb-4 group-hover:text-foreground transition-colors duration-300">
-                I usually respond within 24 hours. Let's discuss your project!
+                {t('contact.quickResponse.description')}
               </p>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-accent rounded-full animate-pulse" />

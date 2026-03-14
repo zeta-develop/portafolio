@@ -5,6 +5,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import ThemeToggle from './ThemeToggle';
 import LanguageSwitch from './LanguageSwitch';
+import { profile } from '@/data/profile';
 
 const Header: React.FC = () => {
   const { t } = useLanguage();
@@ -30,8 +31,8 @@ const Header: React.FC = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/zeta-develop', label: 'GitHub' },
-    { icon: Mail, href: 'mailto:ronaldadantellez@gmail.com', label: 'Email' },
+    { icon: Github, href: profile.github, label: 'GitHub' },
+    { icon: Mail, href: `mailto:${profile.email}`, label: 'Email' },
   ];
 
   return (

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Code, Briefcase, Github, GraduationCap, Award, Rocket } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { profile } from '@/data/profile';
 
 const About: React.FC = () => {
   const { t } = useLanguage();

@@ -47,8 +47,14 @@ const translations = {
     viewProject: 'View Project',
     viewCode: 'View Code',
     viewMore: 'View More Projects',
+    emptyCategory: 'No projects found in this category',
+    noDescription: 'No description available',
+    featured: 'Featured',
     filter: {
       all: 'All',
+      frontend: 'Frontend',
+      backend: 'Backend',
+      fullstack: 'Full Stack',
     },
   },
   skills: {
@@ -71,6 +77,18 @@ const translations = {
     connectText: 'Contact me for collaborations, questions, or just to say hi!',
     location: 'Location',
     connectWithMe: 'Connect with me',
+    social: 'Social',
+    toastDescription: 'Thank you for your message!',
+    placeholders: {
+      name: 'Your name',
+      email: 'your.email@example.com',
+      message: 'Tell me about your project...',
+    },
+    quickResponse: {
+      title: 'Quick Response',
+      description: 'I usually respond within 24 hours. Let\'s discuss your project!',
+      availability: 'Available for new projects',
+    },
   },
   footer: {
     rights: 'All rights reserved',

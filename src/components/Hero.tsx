@@ -3,6 +3,7 @@ import { ArrowRight, Github } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import TypewriterText from '@/components/TypewriterText';
+import { profile } from '@/data/profile';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
