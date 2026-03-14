@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import projects from "@/data/projects";
+import { profile } from '@/data/profile';
 
 type ProjectCategory = "all" | "frontend" | "backend" | "fullstack";
 
@@ -272,7 +273,7 @@ const Projects: React.FC = () => {
         {/* View More Link */}
         <div className="text-center mt-12 animate-on-scroll opacity-0">
           <a
-            href="https://github.com/zeta-develop"
+            href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
             className={`inline-flex items-center px-8 py-4 rounded-full font-medium transition-all duration-200 hover:scale-105 ${theme === 'dark'
