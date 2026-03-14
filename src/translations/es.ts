@@ -50,6 +50,9 @@ const translations = {
     viewMore: 'Ver Más Proyectos',
     filter: {
       all: 'Todos',
+      frontend: 'Frontend',
+      backend: 'Backend',
+      fullstack: 'Full Stack',
     },
   },
   skills: {

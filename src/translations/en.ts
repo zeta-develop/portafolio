@@ -49,6 +49,9 @@ const translations = {
     viewMore: 'View More Projects',
     filter: {
       all: 'All',
+      frontend: 'Frontend',
+      backend: 'Backend',
+      fullstack: 'Full Stack',
     },
   },
   skills: {
