@@ -28,7 +28,7 @@ const translations = {
     jobCompany1: 'Yazaki NIC',
     jobPeriod1: '2022 - Presente',
     jobDescription1: 'Responsable de la coordinación y supervisión del equipo de mantenimiento, así como de la implementación de mejoras en los procesos de producción.',
-    degree1: 'Ingenieria en la informacion con enfasis en desarrollo web y marketing digital (1er AÑO)',
+    degree1: 'Ingenieria en la informacion con enfasis en desarrollo web y marketing digital (2do AÑO)',
     school1: 'UNAM - LEON',
     degree2: 'Tecnico General en electronica basica (cursada)',
     school2: 'Instituto Politecnico LaSalle',
