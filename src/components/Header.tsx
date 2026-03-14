@@ -1,6 +1,5 @@
-
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Github, Mail, Code } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Code2, Github, Mail, Menu, X } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import ThemeToggle from './ThemeToggle';
@@ -14,12 +13,9 @@ const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const navigationItems = [
@@ -30,172 +26,88 @@ const Header: React.FC = () => {
     { label: t('navigation.contact'), href: '#contact' },
   ];
 
-  const socialLinks = [
-    { icon: Github, href: profile.github, label: 'GitHub' },
-    { icon: Mail, href: `mailto:${profile.email}`, label: 'Email' },
-  ];
-
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? theme === 'dark'
-            ? 'py-2 bg-black/90 backdrop-blur-lg border-b border-white/10 shadow-lg' 
-            : 'py-2 bg-white/95 backdrop-blur-lg border-b border-gray-200/50 shadow-sm'
-          : 'py-4 bg-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        {/* Enhanced Logo */}
-        <a 
-          href="#home" 
-          className="group flex items-center space-x-2 transition-all hover:opacity-80"
-        >
-          <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all ${
-            theme === 'dark' 
-              ? 'bg-gradient-to-br from-primary to-purple-600' 
-              : 'bg-gradient-to-br from-primary to-blue-600'
-          } group-hover:scale-105`}>
-            <Code className="w-5 h-5 text-white" />
-          </div>
-          <span className="font-bold text-xl text-primary tracking-tight hidden sm:block">
-            R.A.T.R.
-          </span>
-        </a>
+    <header className="fixed top-0 inset-x-0 z-50 px-4 md:px-8 pt-4">
+      <div
+        className={`mx-auto max-w-6xl rounded-2xl border transition-all duration-300 ${
+          isScrolled
+            ? 'backdrop-blur-xl bg-card/85 border-border shadow-soft-lg'
+            : 'backdrop-blur-md bg-card/65 border-border/60'
+        }`}
+      >
+        <div className="h-16 px-4 md:px-6 flex items-center justify-between">
+          <a href="#home" className="flex items-center gap-3">
+            <div className="size-9 rounded-xl bg-primary text-primary-foreground grid place-items-center shadow-soft">
+              <Code2 className="size-5" />
+            </div>
+            <div className="leading-tight hidden sm:block">
+              <p className="font-semibold text-foreground">Ronald Tellez</p>
+              <p className="text-xs text-muted-foreground">Portfolio 2026</p>
+            </div>
+          </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-1">
-          <ul className="flex items-center space-x-1">
+          <nav className="hidden lg:flex items-center gap-1">
             {navigationItems.map((item) => (
-              <li key={item.href}>
-                <a 
-                  href={item.href}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                    theme === 'dark'
-                      ? 'text-gray-300 hover:text-white hover:bg-white/10'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                  } after:content-[''] after:absolute after:w-0 after:h-0.5 
-                  after:bottom-1 after:left-1/2 after:transform after:-translate-x-1/2 
-                  after:bg-primary after:transition-all after:duration-300 
-                  hover:after:w-6`}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          
-          {/* Social Links - Desktop */}
-          <div className="flex items-center space-x-2 ml-6 pl-6 border-l border-border/30">
-            {socialLinks.map((social) => (
               <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`p-2 rounded-lg transition-all duration-200 ${
-                  theme === 'dark'
-                    ? 'text-gray-400 hover:text-white hover:bg-white/10'
-                    : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
-                }`}
-                aria-label={social.label}
+                key={item.href}
+                href={item.href}
+                className="px-3 py-2 text-sm rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
               >
-                <social.icon className="w-4 h-4" />
+                {item.label}
               </a>
             ))}
-          </div>
-          
-          {/* Controls */}
-          <div className="flex items-center space-x-2 ml-4">
+          </nav>
+
+          <div className="hidden lg:flex items-center gap-2">
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+              aria-label="GitHub"
+            >
+              <Github className="size-4" />
+            </a>
+            <a
+              href={`mailto:${profile.email}`}
+              className="p-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+              aria-label="Email"
+            >
+              <Mail className="size-4" />
+            </a>
             <LanguageSwitch />
             <ThemeToggle />
           </div>
-        </nav>
-        
-        {/* Mobile Controls */}
-        <div className="flex items-center space-x-3 lg:hidden">
-          <LanguageSwitch />
-          <ThemeToggle />
-          <button 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`p-2 rounded-lg transition-all duration-200 ${
-              theme === 'dark'
-                ? 'text-gray-300 hover:text-white hover:bg-white/10'
-                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-            }`}
-            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-          >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+
+          <div className="lg:hidden flex items-center gap-2">
+            <LanguageSwitch />
+            <ThemeToggle />
+            <button
+              onClick={() => setMobileMenuOpen((state) => !state)}
+              className="p-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            >
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
-      </div>
-      
-      {/* Enhanced Mobile Menu */}
-      <div 
-        className={`fixed inset-0 z-40 lg:hidden transition-all duration-300 ease-in-out ${
-          mobileMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'
-        }`}
-        style={{ top: isScrolled ? '60px' : '80px' }}
-      >
-        {/* Backdrop */}
-        <div 
-          className={`absolute inset-0 ${
-            theme === 'dark' 
-              ? 'bg-black/50 backdrop-blur-sm' 
-              : 'bg-gray-900/20 backdrop-blur-sm'
-          }`}
-          onClick={() => setMobileMenuOpen(false)}
-        />
-        
-        {/* Menu Content */}
-        <div 
-          className={`relative ${
-            theme === 'dark' 
-              ? 'bg-black/95 border-white/10' 
-              : 'bg-white/95 border-gray-200/50'
-          } backdrop-blur-lg border-b shadow-xl`}
-        >
-          <nav className="container mx-auto px-4 py-6">
-            {/* Navigation Links */}
-            <ul className="space-y-2 mb-6">
+
+        {mobileMenuOpen && (
+          <div className={`lg:hidden border-t ${theme === 'dark' ? 'border-white/10' : 'border-border/80'}`}>
+            <nav className="p-3 flex flex-col gap-1">
               {navigationItems.map((item) => (
-                <li key={item.href}>
-                  <a 
-                    href={item.href}
-                    className={`block px-4 py-3 text-lg font-medium rounded-lg transition-all duration-200 ${
-                      theme === 'dark'
-                        ? 'text-gray-300 hover:text-white hover:bg-white/10'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            
-            {/* Social Links - Mobile */}
-            <div className="flex justify-center space-x-4 pt-4 border-t border-border/30">
-              {socialLinks.map((social) => (
                 <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`p-3 rounded-lg transition-all duration-200 ${
-                    theme === 'dark'
-                      ? 'text-gray-400 hover:text-white hover:bg-white/10'
-                      : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
-                  }`}
-                  aria-label={social.label}
+                  key={item.href}
+                  href={item.href}
+                  className="px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
-                  <social.icon className="w-5 h-5" />
+                  {item.label}
                 </a>
               ))}
-            </div>
-          </nav>
-        </div>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
