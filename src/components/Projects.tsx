@@ -25,28 +25,25 @@ const Projects: React.FC = () => {
 
   // Animation on scroll
   useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("animate-slide-up");
-            entry.target.classList.remove("opacity-0");
+            section.classList.add("animate-fade-in");
+            section.classList.remove("opacity-0");
+            observer.unobserve(section);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.15 }
     );
 
-    const elements = sectionRef.current?.querySelectorAll(".animate-on-scroll");
-    elements?.forEach((el) => {
-      observer.observe(el);
-    });
+    observer.observe(section);
 
-    return () => {
-      elements?.forEach((el) => {
-        observer.unobserve(el);
-      });
-    };
+    return () => observer.disconnect();
   }, []);
 
   // Preload images when component mounts
@@ -100,13 +97,13 @@ const Projects: React.FC = () => {
     <section
       id="projects"
       ref={sectionRef}
-      className={`section-padding transition-colors duration-300 ${theme === 'dark'
+      className={`section-padding transition-colors duration-300 opacity-0 ${theme === 'dark'
           ? 'bg-gradient-to-b from-black via-gray-900 to-black'
           : 'bg-gradient-to-b from-gray-50 via-white to-gray-50'
         }`}
     >
       <div className="container mx-auto">
-        <div className="text-center mb-12 animate-on-scroll opacity-0">
+        <div className="text-center mb-12">
           <span className={`inline-block py-2 px-4 mb-4 text-sm font-medium rounded-full transition-colors ${theme === 'dark'
               ? 'bg-primary/10 text-primary border border-primary/20'
               : 'bg-primary/10 text-primary border border-primary/30'
@@ -121,13 +118,13 @@ const Projects: React.FC = () => {
         </div>
 
         {/* Filter Categories */}
-        <div className="flex justify-center flex-wrap gap-3 mb-12 animate-on-scroll opacity-0">
+        <div className="flex justify-center flex-wrap gap-3 mb-12">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id as ProjectCategory)}
-              className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 ${selectedCategory === category.id
-                  ? "bg-primary text-primary-foreground shadow-lg scale-105"
+              className={`px-6 py-3 rounded-full text-sm font-medium transition-colors duration-300 ${selectedCategory === category.id
+                  ? "bg-primary text-primary-foreground shadow-lg"
                   : theme === 'dark'
                     ? "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white border border-gray-700"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-900 border border-gray-200"
@@ -151,7 +148,7 @@ const Projects: React.FC = () => {
             filteredProjects.map((project, index) => (
               <Card
                 key={project.id}
-                className={`animate-on-scroll opacity-0 group overflow-hidden transition-all duration-300 hover:scale-105 ${theme === 'dark'
+                className={`group overflow-hidden transition-all duration-300 hover:shadow-soft-lg ${theme === 'dark'
                     ? 'bg-gray-900/50 border-gray-800 hover:border-primary/50 shadow-lg hover:shadow-xl'
                     : 'bg-white border-gray-200 hover:border-primary/30 shadow-sm hover:shadow-lg'
                   }`}
@@ -170,7 +167,7 @@ const Projects: React.FC = () => {
                       <img
                         src={project.image}
                         alt={project.name}
-                        className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-110 ${loadedImages[project.id] ? "opacity-100" : "opacity-0"
+                        className={`w-full h-full object-cover transition-opacity duration-300 ${loadedImages[project.id] ? "opacity-100" : "opacity-0"
                           }`}
                         onLoad={() => handleImageLoad(project.id)}
                         onError={() => handleImageError(project.id)}
@@ -270,12 +267,12 @@ const Projects: React.FC = () => {
         </div>
 
         {/* View More Link */}
-        <div className="text-center mt-12 animate-on-scroll opacity-0">
+        <div className="text-center mt-12">
           <a
             href="https://github.com/zeta-develop"
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-flex items-center px-8 py-4 rounded-full font-medium transition-all duration-200 hover:scale-105 ${theme === 'dark'
+            className={`inline-flex items-center px-8 py-4 rounded-full font-medium transition-colors duration-300 ${theme === 'dark'
                 ? 'bg-gray-800 text-white hover:bg-gray-700 border border-gray-700'
                 : 'bg-gray-100 text-gray-900 hover:bg-gray-200 border border-gray-200'
               }`}
