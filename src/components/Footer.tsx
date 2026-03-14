@@ -2,6 +2,7 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { profile } from '@/data/profile';
 
 const Footer: React.FC = () => {
   const { t } = useLanguage();
@@ -20,7 +21,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <p className="text-sm text-muted-foreground">
-              &copy; {currentYear} Ronald Tellez. {t('footer.rights')}.
+              &copy; {currentYear} {profile.displayName}. {t('footer.rights')}.
             </p>
           </div>
           

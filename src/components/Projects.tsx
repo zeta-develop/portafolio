@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import projects from "@/data/projects";
+import { profile } from '@/data/profile';
 
 type ProjectCategory = "all" | "frontend" | "backend" | "fullstack";
 
@@ -149,7 +150,7 @@ const Projects: React.FC = () => {
             <div className="col-span-full text-center py-20">
               <p className={`text-lg ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
                 }`}>
-                No projects found in this category
+                {t('projects.emptyCategory')}
               </p>
             </div>
           ) : (
@@ -201,7 +202,7 @@ const Projects: React.FC = () => {
                     {project.featured && (
                       <div className="flex items-center text-yellow-500">
                         <Star className="h-4 w-4 fill-current mr-1" />
-                        <span className="text-xs font-medium">Featured</span>
+                        <span className="text-xs font-medium">{t('projects.featured')}</span>
                       </div>
                     )}
                   </div>
@@ -210,7 +211,7 @@ const Projects: React.FC = () => {
                 <CardContent className="pt-0">
                   <p className={`text-sm mb-4 line-clamp-3 h-[4.5rem] transition-colors ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
                     }`}>
-                    {project.description || "No description available"}
+                    {project.description || t('projects.noDescription')}
                   </p>
 
                   {/* Project Topics */}
@@ -277,7 +278,7 @@ const Projects: React.FC = () => {
         {/* View More Link */}
         <div className="text-center mt-12 animate-on-scroll opacity-0">
           <a
-            href="https://github.com/zeta-develop"
+            href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
             className={`inline-flex items-center px-8 py-4 rounded-full font-medium transition-all duration-200 hover:scale-105 ${theme === 'dark'
