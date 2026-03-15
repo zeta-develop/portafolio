@@ -3,7 +3,7 @@ export interface Project {
   id: number;
   name: string;
   description: string;
-  category: "frontend" | "backend" | "fullstack";
+  category: "frontend" | "backend" | "fullstack"|  "Marca";
   image?: string;
   topics: string[];
   github?: string;
@@ -22,6 +22,18 @@ const projects: Project[] = [
     featured: true,
     demo: "https://eshop.zetastudio.space",
   },
+    {
+    id: 2,
+    name: "Zeta - Studio",
+    description: "Zeta-Studio es una marca de desarrolo de software donde pongo mis servicios a tu dispocion para tus grandes ideas.",
+    category: "Marca",
+    image: "/projects/Eshop.webp",
+    topics: ["NodeJs", "PosgresSQL"],
+    featured: false,
+    github: "https://github.com/zeta-develop",
+    demo: "https://zetastudio.space",
+  },
+  
 ];
 
 export default projects;
