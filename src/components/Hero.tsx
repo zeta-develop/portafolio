@@ -14,8 +14,9 @@ const Hero: React.FC = () => {
   return (
     <section id="home" className="relative pt-36 pb-20 px-6 md:px-10 lg:px-16 overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-24 left-1/2 -translate-x-1/2 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
-        <div className="absolute bottom-0 right-10 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
+        <div className="absolute top-24 left-1/2 -translate-x-1/2 h-80 w-80 rounded-full bg-primary/25 blur-3xl" />
+        <div className="absolute bottom-0 right-10 h-72 w-72 rounded-full bg-accent/25 blur-3xl" />
+        <div className="absolute top-10 left-10 h-52 w-52 rounded-full bg-primary/10 blur-3xl" />
       </div>
 
       <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">

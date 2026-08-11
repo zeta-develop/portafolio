@@ -107,34 +107,38 @@ const Projects: React.FC = () => {
           : 'bg-white border-gray-200 hover:border-primary/30 shadow-sm hover:shadow-lg'
         }`}
     >
-      {/* Project Image with improved loading */}
-      <div className={`w-full h-48 overflow-hidden ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-100'}`}>
+      {/* Project Image with improved loading — aspect 16:10 por consistencia */}
+      <div className={`relative w-full aspect-[16/10] overflow-hidden ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-100'}`}>
         {project.image && !imageErrors[project.id] ? (
           <>
             {!loadedImages[project.id] && (
-              <div className="w-full h-full flex items-center justify-center">
-                <Skeleton className="w-full h-48" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Skeleton className="w-full h-full" />
               </div>
             )}
             <img
               src={project.image}
               alt={project.name}
-              className={`w-full h-full object-cover transition-opacity duration-300 ${loadedImages[project.id] ? "opacity-100" : "opacity-0"}`}
+              className={`w-full h-full object-cover object-top transition-opacity duration-300 ${loadedImages[project.id] ? "opacity-100" : "opacity-0"}`}
               onLoad={() => handleImageLoad(project.id)}
               onError={() => handleImageError(project.id)}
               loading="lazy"
             />
           </>
         ) : (
-          <div className={`w-full h-full flex items-center justify-center ${theme === 'dark' ? 'bg-gray-800 text-gray-600' : 'bg-gray-100 text-gray-400'}`}>
-            <Code className="w-12 h-12" />
+          <div className={`absolute inset-0 flex flex-col items-center justify-center gap-2 text-center p-4 ${theme === 'dark'
+              ? 'bg-gradient-to-br from-gray-800 to-gray-900 text-gray-400'
+              : 'bg-gradient-to-br from-gray-100 to-gray-200 text-gray-500'
+            }`}>
+            <Code className="w-12 h-12 opacity-70" />
+            <span className="text-sm font-medium">{project.name}</span>
           </div>
         )}
       </div>
 
       <CardHeader className="pb-3">
         <div className="flex justify-between items-start gap-2">
-          <CardTitle className={`text-lg font-semibold line-clamp-1 mb-0 transition-colors ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+          <CardTitle className={`text-lg font-semibold mb-0 transition-colors ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
             {project.name}
           </CardTitle>
 
@@ -156,7 +160,7 @@ const Projects: React.FC = () => {
       </CardHeader>
 
       <CardContent className="pt-0">
-        <p className={`text-sm mb-4 line-clamp-3 h-[4.5rem] transition-colors ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+        <p className={`text-sm mb-4 transition-colors ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
           {project.description || t('projects.noDescription')}
         </p>
 

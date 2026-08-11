@@ -19,8 +19,8 @@ const Contact: React.FC = () => {
     e.preventDefault();
 
     const { name, email, message } = formData;
-    const text = `Hola Nexo Digital, soy ${name}${email ? ` (${email})` : ''}.\n\n${message}`;
-    const url = `${profile.whatsapp}?text=${encodeURIComponent(text)}`;
+    const text = `Hola Nexo Digital, soy ${name}${email ? ` (${email})` : ''}.%0A%0A${message}`;
+    const url = `${profile.whatsapp}?text=${text}`;
 
     window.open(url, '_blank', 'noopener,noreferrer');
     toast({

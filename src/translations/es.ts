@@ -110,6 +110,9 @@ const translations = {
   footer: {
     rights: 'Todos los derechos reservados',
     madeBy: 'Agencia de desarrollo de software',
+    ctaTitle: '¿Listo para llevar tu proyecto al siguiente nivel?',
+    ctaText: 'Hablemos de tu idea y construyamos una solución a medida.',
+    whatsappCta: 'Escríbenos por WhatsApp',
   },
 };
 
