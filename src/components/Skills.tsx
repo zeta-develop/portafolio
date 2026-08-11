@@ -28,11 +28,11 @@ const Skills: React.FC = () => {
   ];
 
   const softSkills: SoftSkill[] = [
-    { name: 'Teamwork' },
-    { name: 'Communication' },
-    { name: 'Problem Solving' },
-    { name: 'Adaptability' },
-    { name: 'Time Management' },
+    { name: 'Trabajo en equipo' },
+    { name: 'Comunicación efectiva' },
+    { name: 'Resolución de problemas' },
+    { name: 'Adaptabilidad' },
+    { name: 'Gestión del tiempo' },
   ];
 
   useEffect(() => {

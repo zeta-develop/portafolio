@@ -1,54 +1,18 @@
-
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import enTranslations from '../translations/en';
+import React, { createContext, useContext } from 'react';
 import esTranslations from '../translations/es';
 
-export type Language = 'es' | 'en';
-
 interface LanguageContextType {
-  language: Language;
-  setLanguage: (language: Language) => void;
-  toggleLanguage: () => void;
   t: (key: string) => string;
 }
-
-const translations = {
-  en: enTranslations,
-  es: esTranslations
-};
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('es');
-
-  // Load language preference from localStorage on mount
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('language') as Language | null;
-    const browserLanguage = navigator.language.split('-')[0];
-
-    if (savedLanguage) {
-      setLanguage(savedLanguage as Language);
-    } else if (browserLanguage === 'es') {
-      setLanguage('es');
-    } else {
-      setLanguage('en');
-    }
-  }, []);
-
-  // Save language preference to localStorage
-  useEffect(() => {
-    localStorage.setItem('language', language);
-  }, [language]);
-
-  const toggleLanguage = () => {
-    setLanguage(prevLanguage => (prevLanguage === 'es' ? 'en' : 'es'));
-  };
-
-  // Translation function
+  // El sitio es 100% en español: se mantiene el contexto para conservar la API `t()`
+  // y no reescribir todos los componentes. El inglés fue retirado por decisión de marca.
   const t = (key: string): string => {
     const keys = key.split('.');
-    let value: Record<string, unknown> | string = translations[language];
+    let value: Record<string, unknown> | string = esTranslations;
 
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
@@ -65,7 +29,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage, t }}>
+    <LanguageContext.Provider value={{ t }}>
       {children}
     </LanguageContext.Provider>
   );

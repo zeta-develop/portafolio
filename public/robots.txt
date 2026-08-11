@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ronaldtellez.online/sitemap.xml
+Sitemap: https://ronaldtellez.dev/sitemap.xml
