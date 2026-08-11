@@ -134,7 +134,7 @@ const Projects: React.FC = () => {
 
       <CardHeader className="pb-3">
         <div className="flex justify-between items-start gap-2">
-          <CardTitle className={`text-lg font-semibold line-clamp-1 mb-0 transition-colors ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+          <CardTitle className={`text-lg font-semibold mb-0 transition-colors ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
             {project.name}
           </CardTitle>
 
@@ -156,7 +156,7 @@ const Projects: React.FC = () => {
       </CardHeader>
 
       <CardContent className="pt-0">
-        <p className={`text-sm mb-4 line-clamp-3 h-[4.5rem] transition-colors ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+        <p className={`text-sm mb-4 transition-colors ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
           {project.description || t('projects.noDescription')}
         </p>
 
