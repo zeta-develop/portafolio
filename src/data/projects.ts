@@ -21,6 +21,7 @@ const projects: Project[] = [
     description: 'Plataforma multiplataforma (web y móvil Android) para la administración de préstamos: control de clientes, cobros diarios, gestión de caja, planificación de rutas de cobro y generación de recibos PDF. Concebida para prestamistas y cobradores, con indicadores en tiempo real.',
     category: 'cliente',
     type: 'cliente',
+    image: '/projects/prestafacil.webp',
     topics: ['Next.js', 'Supabase', 'Capacitor', 'Android'],
     github: 'https://github.com/zeta-develop/PrestaFacil',
   },
