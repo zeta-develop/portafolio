@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Code, Briefcase, Github, GraduationCap, Award, Rocket } from 'lucide-react';
+import { Briefcase, Github, GraduationCap, Award, Rocket, User } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { profile } from '@/data/profile';
 
@@ -44,6 +44,19 @@ const About: React.FC = () => {
 
             <div className="space-y-4">
               <p className="text-lg text-muted-foreground leading-relaxed">{t('about.description')}</p>
+            </div>
+
+            <div className="mt-8 bg-card border border-border rounded-2xl p-6 shadow-soft hover:shadow-soft-lg transition-shadow duration-300">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-primary/10 rounded-full">
+                  <User className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground">{t('about.founderTitle')}</h3>
+                  <p className="text-sm text-primary font-medium">{profile.displayName} · {t('hero.title')}</p>
+                </div>
+              </div>
+              <p className="text-muted-foreground leading-relaxed">{t('about.founderText')}</p>
             </div>
 
             <div className="mt-8">
@@ -107,22 +120,22 @@ const About: React.FC = () => {
               <div className="relative bg-card backdrop-blur-md border border-border shadow-soft overflow-hidden rounded-2xl group-hover:shadow-soft-lg transition-shadow duration-300">
                 <img
                   src="https://avatars.githubusercontent.com/u/80638821?v=4&size=720"
-                  alt="Ronald Tellez"
+                  alt={`${profile.displayName} — ${profile.role}`}
                   className="w-full h-auto rounded-2xl"
                   style={{ aspectRatio: '1/1', objectFit: 'cover' }}
                 />
 
                 <div className="absolute top-4 left-4 bg-card backdrop-blur-md border border-border p-3 rounded-full shadow-soft transition-colors duration-300 hover:bg-muted">
-                  <Code className="w-5 h-5 text-primary" />
+                  <Briefcase className="w-5 h-5 text-primary" />
                 </div>
 
-                <div className="absolute bottom-4 right-4 bg-card backdrop-blur-md border border-border p-3 rounded-full shadow-soft transition-colors duration-300 hover:bg-muted">
-                  <Briefcase className="w-5 h-5 text-accent" />
+                <div className="absolute top-4 right-4 bg-card backdrop-blur-md border border-border px-4 py-2 rounded-full shadow-soft transition-colors duration-300 hover:bg-muted">
+                  <p className="text-sm font-medium text-foreground">{profile.agencyName}</p>
                 </div>
 
                 <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-card backdrop-blur-md border border-border px-6 py-4 rounded-xl shadow-soft-lg">
-                  <h3 className="font-medium text-center text-foreground">{t('hero.title')}</h3>
-                  <p className="text-muted-foreground text-sm text-center">Ronald Tellez</p>
+                  <h3 className="font-medium text-center text-foreground">{profile.displayName}</h3>
+                  <p className="text-muted-foreground text-sm text-center">{profile.role}</p>
                 </div>
               </div>
             </div>

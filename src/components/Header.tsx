@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Code2, Github, Mail, Menu, X } from 'lucide-react';
+import { Code2, Github, Mail, Menu, MessageCircle, X } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import ThemeToggle from './ThemeToggle';
-import LanguageSwitch from './LanguageSwitch';
 import { profile } from '@/data/profile';
 
 const Header: React.FC = () => {
@@ -21,6 +20,7 @@ const Header: React.FC = () => {
   const navigationItems = [
     { label: t('navigation.home'), href: '#home' },
     { label: t('navigation.about'), href: '#about' },
+    { label: t('navigation.services'), href: '#services' },
     { label: t('navigation.projects'), href: '#projects' },
     { label: t('navigation.skills'), href: '#skills' },
     { label: t('navigation.contact'), href: '#contact' },
@@ -41,8 +41,8 @@ const Header: React.FC = () => {
               <Code2 className="size-5" />
             </div>
             <div className="leading-tight hidden sm:block">
-              <p className="font-semibold text-foreground">Ronald Tellez</p>
-              <p className="text-xs text-muted-foreground">Portfolio 2026</p>
+              <p className="font-semibold text-foreground">{profile.agencyName}</p>
+              <p className="text-xs text-muted-foreground">{profile.agencyTagline}</p>
             </div>
           </a>
 
@@ -69,18 +69,25 @@ const Header: React.FC = () => {
               <Github className="size-4" />
             </a>
             <a
+              href={profile.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+              aria-label="WhatsApp"
+            >
+              <MessageCircle className="size-4" />
+            </a>
+            <a
               href={`mailto:${profile.email}`}
               className="p-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
               aria-label="Email"
             >
               <Mail className="size-4" />
             </a>
-            <LanguageSwitch />
             <ThemeToggle />
           </div>
 
           <div className="lg:hidden flex items-center gap-2">
-            <LanguageSwitch />
             <ThemeToggle />
             <button
               onClick={() => setMobileMenuOpen((state) => !state)}

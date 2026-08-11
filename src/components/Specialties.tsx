@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Code, Server, Cpu } from 'lucide-react';
+import { Code, Smartphone, Cloud } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Specialties: React.FC = () => {
@@ -13,14 +13,14 @@ const Specialties: React.FC = () => {
       icon: <Code className="w-6 h-6" />,
     },
     {
-      title: t('specialties.cloudSystems'),
-      description: t('specialties.cloudSystemsDesc'),
-      icon: <Server className="w-6 h-6" />,
+      title: t('specialties.mobileDev'),
+      description: t('specialties.mobileDevDesc'),
+      icon: <Smartphone className="w-6 h-6" />,
     },
     {
-      title: t('specialties.electronics'),
-      description: t('specialties.electronicsDesc'),
-      icon: <Cpu className="w-6 h-6" />,
+      title: t('specialties.cloudAuto'),
+      description: t('specialties.cloudAutoDesc'),
+      icon: <Cloud className="w-6 h-6" />,
     },
   ];
 
@@ -47,9 +47,15 @@ const Specialties: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 px-6 md:px-10 lg:px-16 transition-colors duration-300 bg-background opacity-0">
+    <section id="services" ref={sectionRef} className="py-20 px-6 md:px-10 lg:px-16 transition-colors duration-300 bg-background opacity-0">
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 glow-text">{t('specialties.title')}</h2>
+        <div className="text-center mb-12">
+          <span className="inline-block py-1 px-3 mb-2 text-sm font-medium bg-accent-subtle rounded-full border border-accent/20 hover:bg-accent/20 transition-colors duration-300">
+            {t('specialties.subtitle')}
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground glow-text">{t('specialties.title')}</h2>
+          <div className="w-20 h-1 bg-primary rounded-full mx-auto" />
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {specialties.map((specialty, index) => (

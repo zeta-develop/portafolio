@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
       <div className="max-w-6xl mx-auto rounded-2xl border border-border bg-card/80 backdrop-blur-md p-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground text-center md:text-left">
-            &copy; {currentYear} {profile.displayName}. {t('footer.rights')}.
+            &copy; {currentYear} {profile.agencyName} &mdash; {t('footer.madeBy')}. {t('footer.rights')}.
           </p>
 
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
