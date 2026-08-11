@@ -44,7 +44,6 @@ const projects: Project[] = [
     type: 'personal',
     topics: ['Kotlin', 'Android', 'Capacitor'],
     github: 'https://github.com/zeta-develop/PrestaFacil-Mobile-SaaS',
-    demo: 'https://presta-facil-mobile-saa-s.vercel.app',
   },
   {
     id: 4,
