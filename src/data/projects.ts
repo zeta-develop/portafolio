@@ -33,6 +33,7 @@ const projects: Project[] = [
     type: 'personal',
     topics: ['Next.js', 'Prisma', 'PostgreSQL'],
     github: 'https://github.com/zeta-develop/prestafacil-saas',
+    image: '/projects/prestafacil-saas.webp',
     demo: 'https://prestafacil-saas-iota.vercel.app',
   },
   {
@@ -53,6 +54,7 @@ const projects: Project[] = [
     type: 'personal',
     topics: ['TypeScript', 'React'],
     github: 'https://github.com/zeta-develop/Legendx',
+    image: '/projects/legendx.webp',
     demo: 'https://legendx-eg9x.vercel.app',
   },
   {
@@ -63,6 +65,7 @@ const projects: Project[] = [
     type: 'personal',
     topics: ['React', 'TypeScript', 'Tailwind', 'Astro'],
     github: 'https://github.com/zeta-develop/portafolio',
+    image: '/projects/portafolio.webp',
     demo: 'https://ronaldtellez.dev',
     featured: true,
   },
